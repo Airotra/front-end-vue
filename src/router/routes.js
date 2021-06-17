@@ -3,7 +3,22 @@ const loginPage = [
     path: '/login',
     name: 'login',
     component: () =>
-      import(/* webpackChunkName: "Login" */ '../pages/login/Login')
+        import(/* webpackChunkName: "Login" */ '../pages/login/Login')
+  },
+  {
+    path: '/adminLogin',
+    name: 'adminLogin',
+    component: () =>
+        import(/* webpackChunkName: "adminLogin" */ '../pages/login/AdminLogin')
+  }
+]
+
+const registerPage = [
+  {
+    path: '/register',
+    name: 'register',
+    component: () =>
+        import(/* webpackChunkName: "Register" */ '../pages/register/Register')
   }
 ]
 
@@ -62,4 +77,4 @@ const errorPage = [
     redirect: '/notFound'
   }
 ]
-export default [...loginPage, ...mainPage, ...errorPage]
+export default [...loginPage, ...registerPage, ...mainPage, ...errorPage]

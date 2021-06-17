@@ -7,7 +7,7 @@
                 <h2 style="left: 150px;top: -15px;margin: 0;position: relative;font-weight: normal">XX购物商城</h2>
             </el-aside>
 
-            <el-main class="right" style="">
+            <el-main class="right">
 
             </el-main>
         </el-container>

@@ -48,6 +48,15 @@ export default {
     },
     methods: {
         userLogin () {
+            this.$axios.get('/login', {
+                params: {
+                    phone_number: this.account,
+                    password: this.password
+                }
+                }).then(res => {
+                    console.info(res.data)
+                    this.$router.push('/main')
+            })
         }
     }
 }

@@ -1,12 +1,14 @@
 <template>
     <div id="app" style="background-color: rgb(244,246,249)">
         <el-container class="continer" style="height: 100%">
-            <el-header style="height: 180px">
-                <img src="static/images/picture/shop.png" style="transform:scale(0.5); margin-left: 650px">
+            <el-header style="height: 180px; text-align: center">
+                <div style="padding: 0;margin: 0; text-align: center;width: 700px; margin-left: 25%">
+                    <img src="static/images/picture/shop.png" style="transform:scale(0.5);">
+                </div>
             </el-header>
 
             <el-main>
-                <div style="background-color: white;height: 450px;width: 700px; margin-left: 400px;  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); border-top: rgb(31,97,193) solid 2px;border-radius: 2px;padding: 0;">
+                <div style="background-color: white;height: 450px;width: 700px; margin-left: 25%;  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); border-top: rgb(31,97,193) solid 2px;border-radius: 2px;padding: 0;">
                     <div class="from-header" style="height: 50px; border-bottom: 1px solid rgb(240,240,240)">
                         <p style="color: rgb(31,97,193); font-weight: bold;position: relative; left: 20px; top: 10px;">注册</p>
                     </div>

@@ -51,7 +51,7 @@ export default {
             if (this.account !== '' && this.password !== '') {
                 this.$axios.get('/api/user/userLogin', {
                     params: {
-                        phone_number: this.account,
+                        phoneNumber: this.account,
                         password: this.password
                     }
                 }).then(res => {
@@ -67,6 +67,7 @@ export default {
                             }
                         })
                     } else {
+                        this.cookie().setAttribute('isLogin', true)
                         this.$router.push('/main/first')
                     }
                 })

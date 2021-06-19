@@ -58,6 +58,9 @@ export default {
   components: {
     's-icon': Icon,
     's-tooltip': Tooltip
+  },
+  methods: {
+
   }
 }
 </script>

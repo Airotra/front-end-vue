@@ -35,6 +35,22 @@ export default {
   },
   methods: {
     logout () {
+      this.$confirm('此操作将注销登录, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '注销登录成功!'
+        },
+        this.$router.push('/login'))
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消注销登录'
+        })
+      })
     }
   },
   components: {

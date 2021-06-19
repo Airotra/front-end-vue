@@ -1,10 +1,10 @@
 export default {
   roleTypeMap: {
     1: {
-      roleName: '超级管理员'
+      roleName: '用户'
     },
     2: {
-      roleName: '用户'
+      roleName: '管理员'
     }
   }
 }

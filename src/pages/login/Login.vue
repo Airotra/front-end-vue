@@ -48,15 +48,39 @@ export default {
     },
     methods: {
         userLogin () {
-            this.$axios.get('/login', {
-                params: {
-                    phone_number: this.account,
-                    password: this.password
-                }
+            if (this.account !== '' && this.password !== '') {
+                this.$axios.get('/api/user/userLogin', {
+                    params: {
+                        phone_number: this.account,
+                        password: this.password
+                    }
                 }).then(res => {
                     console.info(res.data)
-                    this.$router.push('/main')
-            })
+                    if (res.data.data == null) {
+                        this.$alert('账号或密码错误', '登录失败', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'info',
+                                    message: `请重新登录`
+                                })
+                            }
+                        })
+                    } else {
+                        this.$router.push('/main/first')
+                    }
+                })
+            } else {
+                this.$alert('请输入有效账密', '无效账密', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `请重新登录`
+                        })
+                    }
+                })
+            }
         }
     }
 }

@@ -44,7 +44,9 @@ export default {
           type: 'success',
           message: '注销登录成功!'
         },
-        this.$router.push('/login'))
+        this.cookie().setAttribute('isLogin', false),
+        this.$router.push('/login')
+        )
       }).catch(() => {
         this.$message({
           type: 'info',

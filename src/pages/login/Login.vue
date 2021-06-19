@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import {_saveLocalStorage} from '../../tools/utils'
+
 export default {
     name: 'login',
     data () {
@@ -67,7 +69,7 @@ export default {
                             }
                         })
                     } else {
-                        this.cookie().setAttribute('isLogin', true)
+                        _saveLocalStorage('isLogin', true)
                         this.$router.push('/main/first')
                     }
                 })

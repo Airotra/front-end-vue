@@ -16,7 +16,7 @@
                     <p style="margin-bottom: 10px">密码</p>
                     <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
                 </div>
-                <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="userLogin">登录</el-button>
+                <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="adminLogin">登录</el-button>
                 <div class="register" style="margin-top: 77px; margin-left: 100px;">
                     <p style="display: inline;">不是管理员？</p>
                     <router-link to="/login">用户登录</router-link>
@@ -36,8 +36,54 @@
 </template>
 
 <script>
+import {_saveLocalStorage} from '../../tools/utils'
+
 export default {
-  name: 'adminLogin'
+  name: 'adminLogin',
+    data () {
+        return {
+            account: '',
+            password: ''
+        }
+    },
+    methods: {
+        adminLogin () {
+            if (this.account !== '' && this.password !== '') {
+                this.$axios.get('/api/admin/adminLogin', {
+                    params: {
+                        adminAccount: this.account,
+                        adminPassword: this.password
+                    }
+                }).then(res => {
+                    console.info(res.data)
+                    if (res.data.data == null) {
+                        this.$alert('账号或密码错误', '登录失败', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'info',
+                                    message: `请重新登录`
+                                })
+                            }
+                        })
+                    } else {
+                        _saveLocalStorage('isLogin', true)
+                        this.$router.go('/main/first')
+                    }
+                })
+            } else {
+                this.$alert('请输入有效账密', '无效账密', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `请重新登录`
+                        })
+                    }
+                })
+            }
+        }
+    }
 }
 </script>
 

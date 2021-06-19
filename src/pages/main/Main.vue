@@ -11,6 +11,7 @@
 import {mapGetters} from 'vuex'
 import Layout from '@/layouts/Layout'
 import logo from '@/assets/images/logo.png'
+import {_saveLocalStorage} from '../../tools/utils'
 
 export default {
   name: 'Main',
@@ -44,8 +45,12 @@ export default {
           type: 'success',
           message: '注销登录成功!'
         },
-        this.cookie().setAttribute('isLogin', false),
-        this.$router.push('/login')
+        _saveLocalStorage('isLogin', false),
+        this.$axios.get('/api/user/logout', {
+          params: {}
+        }).then(res => {
+          this.$router.push('/login')
+        })
         )
       }).catch(() => {
         this.$message({

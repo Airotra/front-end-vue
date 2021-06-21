@@ -11,7 +11,7 @@
 import {mapGetters} from 'vuex'
 import Layout from '@/layouts/Layout'
 import logo from '@/assets/images/logo.png'
-import {_saveLocalStorage} from '../../tools/utils'
+import {_getLocalStorage, _saveLocalStorage} from '../../tools/utils'
 
 export default {
   name: 'Main',
@@ -31,6 +31,8 @@ export default {
       getSidebarList: 'sidebar/getSidebarList'
     }),
     sidebarList () {
+      _saveLocalStorage('isLogin', false)
+      console.info(_getLocalStorage('isLogin'))
       return this.getSidebarList(this.userType).main
     }
   },

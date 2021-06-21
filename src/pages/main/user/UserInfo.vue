@@ -20,8 +20,7 @@
     export default {
         name: 'UserInfo',
         created () {
-            console.info(_getLocalStorage('isLogin'))
-            /* if (_getLocalStorage('isLogin') !== true) {
+            if (JSON.parse(_getLocalStorage('isLogin')) !== true) {
                     this.$alert('请登录后在进行个人信息管理', '提示', {
                         confirmButtonText: '确定',
                         callback: action => {
@@ -32,7 +31,7 @@
                         }
                     })
                 this.$router.push('/login')
-            } */
+            }
         }
     }
 </script>

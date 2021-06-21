@@ -40,7 +40,7 @@
                             </el-input>
                         </div>
                         <el-checkbox v-model="agreeRegister" style="position: relative; bottom: 50px;">同意注册</el-checkbox>
-                        <el-button type="primary" style="position: relative;left: 45px; bottom: 10px;width: 300px">注册</el-button>
+                        <el-button type="primary" style="position: relative;left: 45px; bottom: 10px;width: 300px" @click="userRegister">注册</el-button>
                     </div>
                     <div class="login" style="margin-top: 77px; margin-left: 100px;">
                         <p style="display: inline;margin-left: 25%">已经有账号了？</p>
@@ -66,6 +66,76 @@ export default {
             password: '',
             repassword: '',
             agreeRegister: false
+        }
+    },
+    methods: {
+        userRegister () {
+            if (!this.agreeRegister) {
+                this.$alert('请勾选同意注册选框', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `请勾选同意注册选框`
+                        })
+                    }
+                })
+            } else if (this.nickName === '' || this.account === '' || this.password === '' || this.repassword === '') {
+                this.$alert('请完善注册信息', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `请完善注册信息`
+                        })
+                    }
+                })
+            } else if (this.password !== this.repassword) {
+                this.$alert('两次输入密码不一致', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `两次输入密码不一致`
+                        })
+                    }
+                })
+            } else {
+                var params = new URLSearchParams()
+                params.append('nickName', this.nickName)
+                params.append('phoneNumber', this.account)
+                params.append('password', this.password)
+                params.append('type', 1)
+                params.append('point', 0)
+                this.$axios.get('/api/user/userRegister', {
+                    params: params
+                }).then(res => {
+                    console.info(res)
+                    if (res.data === false) {
+                        this.$alert('手机号已被注册，请直接登录', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'info',
+                                    message: `手机号已被注册，请直接登录`
+                                })
+                            }
+                        })
+                        this.$router.push('/login')
+                    } else {
+                        this.$alert('注册成功', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'info',
+                                    message: `注册成功`
+                                })
+                            }
+                        })
+                        this.$router.push('/login')
+                    }
+                })
+            }
         }
     }
 }

@@ -46,6 +46,7 @@ export default {
           message: '注销登录成功!'
         },
         _saveLocalStorage('isLogin', false),
+        _saveLocalStorage('id', null),
         this.$axios.get('/api/user/logout', {
           params: {}
         }).then(res => {

@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {_saveLocalStorage} from '../../tools/utils'
+    import {_saveLocalStorage} from '../../tools/utils'
 
 export default {
     name: 'login',
@@ -70,6 +70,7 @@ export default {
                         })
                     } else {
                         _saveLocalStorage('isLogin', true)
+                        _saveLocalStorage('id', res.data.data.id)
                         this.$router.push('/main/first')
                     }
                 })

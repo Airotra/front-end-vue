@@ -68,7 +68,7 @@ export default {
                         })
                     } else {
                         _saveLocalStorage('isLogin', true)
-                        this.$router.go('/main/first')
+                        this.$router.push('/main/first')
                     }
                 })
             } else {

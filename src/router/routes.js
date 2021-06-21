@@ -48,6 +48,14 @@ const mainPage = [
             import(
               /* webpackChunkName: "First" */ '../pages/main/routes/second/Second'
             )
+      },
+      {
+        path: 'user/userInfo',
+        name: 'userInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/UserInfo'
+                )
       }
     ]
   }

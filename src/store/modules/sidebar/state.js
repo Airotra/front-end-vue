@@ -22,6 +22,27 @@ export default {
               title: '二级菜单'
             }
           ]
+        },
+        {
+          groupTitle: '个人中心'
+        },
+        {
+          path: '/main/user',
+          icon: 'suncaper-menu-unfold',
+          title: '个人信息',
+          group: 'user',
+          children: [
+            {
+              path: '/main/user/userInfo',
+              icon: 'suncaper-menu-unfold',
+              title: '个人信息查看'
+            },
+            {
+              path: '/main/user/userInfo',
+              icon: 'suncaper-menu-unfold',
+              title: '个人信息管理'
+            }
+          ]
         }
       ]
     }

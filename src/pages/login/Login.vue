@@ -17,16 +17,17 @@
                     <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
                 </div>
                 <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="userLogin">登录</el-button>
-                <div class="register" style="margin-top: 77px; margin-left: 100px;">
-                    <p style="display: inline;">还没有账号？</p>
-                    <router-link to="/register">去注册</router-link>
-                    <i class="el-icon-caret-right"></i>
+                <div style="position: relative; left: 40%;bottom: -55px; width: fit-content;">
+                    <el-link type="primary" href="/#/main/first" @click.native="refresh"><i class="el-icon-user"></i>游客登录</el-link>
                 </div>
-                <div style="font-size: small; margin-left: 97px;margin-top: 30px">
+                <div class="register" style="margin-top: 77px; margin-left: 115px;">
+                    <p style="display: inline;">还没有账号？</p>
+                    <el-link type="primary" href="/#/register">去注册<i class="el-icon-caret-right"></i></el-link>
+                </div>
+                <div style="font-size: small; margin-left: 105px;margin-top: 30px">
                     Copyright © 2021 SCUTeam8
                 </div>
-                <router-link to="/adminLogin" style="font-size: smaller; font-weight: lighter;position: relative; left: 320px;bottom: -30px;">管理员登录</router-link>
-                <i class="el-icon-s-custom" style="position: relative; left: 230px;bottom: -31px"></i>
+                <el-link type="primary" href="/#/adminLogin" style="position: relative; left: 75%;bottom: -20px;">管理员登录<i class="el-icon-s-custom"></i></el-link>
             </el-aside>
 
             <el-main class="right" style="padding: 0">
@@ -71,7 +72,9 @@ export default {
                     } else {
                         _saveLocalStorage('isLogin', true)
                         _saveLocalStorage('id', res.data.data.id)
+                        _saveLocalStorage('type', res.data.data.type)
                         this.$router.push('/main/first')
+                        this.$router.go(0)
                     }
                 })
             } else {
@@ -85,6 +88,10 @@ export default {
                     }
                 })
             }
+        },
+        refresh () {
+            this.$router.push('/main/first')
+            this.$router.go(0)
         }
     }
 }

@@ -5,6 +5,9 @@ export default {
     },
     2: {
       roleName: '管理员'
+    },
+    3: {
+      roleName: '游客'
     }
   }
 }

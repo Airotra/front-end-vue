@@ -17,12 +17,11 @@
                     <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
                 </div>
                 <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="adminLogin">登录</el-button>
-                <div class="register" style="margin-top: 77px; margin-left: 100px;">
+                <div class="register" style="margin-top: 77px; margin-left: 115px;">
                     <p style="display: inline;">不是管理员？</p>
-                    <router-link to="/login">用户登录</router-link>
-                    <i class="el-icon-caret-right"></i>
+                    <el-link type="primary" href="/#/login">用户登录<i class="el-icon-caret-right"></i></el-link>
                 </div>
-                <div style="font-size: small; margin-left: 97px;margin-top: 30px">
+                <div style="font-size: small; margin-left: 105px;margin-top: 30px">
                     Copyright © 2021 SCUTeam8
                 </div>
             </el-aside>
@@ -68,7 +67,9 @@ export default {
                         })
                     } else {
                         _saveLocalStorage('isLogin', true)
+                        _saveLocalStorage('type', res.data.data.type)
                         this.$router.push('/main/first')
+                        this.$router.go(0)
                     }
                 })
             } else {

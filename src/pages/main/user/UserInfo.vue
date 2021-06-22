@@ -18,7 +18,7 @@
                         <p style="margin: 4%; font-size: 1.1em;">个人基本信息</p>
                     </div>
                     <div class="avatar">
-                        <el-avatar icon="el-icon-user-solid" :size="100" style="margin: 10px 36%;"></el-avatar>
+                        <el-avatar icon="el-icon-user-solid" :size="80" style="margin: 10px 40%;"></el-avatar>
                     </div>
                     <div class="userInfo">
                         <div style="border-bottom: 1px solid rgb(240,240,240)">
@@ -38,6 +38,24 @@
                 <div class="rightContainer">
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
                         <p style="margin: 4%; font-size: 1.1em;">常用地址</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">收货人： {{nickName}}</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">手机号： {{phoneNumber}}</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">省份： {{nickName}}</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">市/县： {{phoneNumber}}</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">区/乡： {{point}}</p>
+                    </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">详细地址： 普通用户</p>
                     </div>
                 </div>
             </div>

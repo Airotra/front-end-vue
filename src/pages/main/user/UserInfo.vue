@@ -33,6 +33,8 @@
                         <div style="border-bottom: 1px solid rgb(240,240,240)">
                             <p style="margin-left: 5%">用户类型： 普通用户</p>
                         </div>
+                        <el-button type="text" size="medium" style="float: right; margin-right: 5%; margin-top: 5px" @click="handleClick">编辑</el-button>
+                        <user-detail ref="userDetail" @ok = 'getData'></user-detail>
                     </div>
                 </div>
                 <div class="rightContainer">
@@ -66,16 +68,28 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import userDetail from '../components/user/UserDetailDialog'
+    import { _userInfo } from '@api/user'
 
     export default {
         name: 'UserInfo',
+        components: {
+            userDetail
+        },
         data () {
             return {
                 nickName: '',
                 phoneNumber: '',
                 avatar: '',
                 address: '',
-                point: ''
+                point: '',
+                password: '',
+                user: {
+                    id: '',
+                    nickName: '',
+                    phoneNumber: '',
+                    password: ''
+                }
             }
         },
         computed: {
@@ -94,15 +108,31 @@
                                 type: 'info',
                                 message: `请登录后再进行个人信息管理`
                             })
+                            this.$router.push('/login')
                         }
                     })
-                this.$router.push('/login')
             } else {
-                this.$axios.get('/api/user/' + this.userId).then(res => {
-                    this.nickName = res.data.data.nickName
-                    this.phoneNumber = res.data.data.phoneNumber
-                    this.avatar = res.data.data.avatar
-                    this.point = res.data.data.point
+                this.getData()
+            }
+        },
+        methods: {
+            handleClick () {
+                this.setUserData()
+                this.$refs.userDetail.show(this.user)
+            },
+            setUserData () {
+                this.user.id = this.userId
+                this.user.nickName = this.nickName
+                this.user.phoneNumber = this.phoneNumber
+                this.user.password = this.password
+            },
+            getData () {
+                _userInfo(this.userId).then(res => {
+                    this.nickName = res.data.nickName
+                    this.phoneNumber = res.data.phoneNumber
+                    this.avatar = res.data.avatar
+                    this.point = res.data.point
+                    this.password = res.data.password
                 })
             }
         }

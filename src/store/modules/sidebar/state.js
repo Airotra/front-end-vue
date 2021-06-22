@@ -35,11 +35,6 @@ export default {
             {
               path: '/main/user/userInfo',
               icon: 'suncaper-menu-unfold',
-              title: '个人信息查看'
-            },
-            {
-              path: '/main/user/userInfo',
-              icon: 'suncaper-menu-unfold',
               title: '个人信息管理'
             }
           ]
@@ -85,7 +80,7 @@ export default {
               title: '个人信息查看'
             },
             {
-              path: '/main/user/userInfo',
+              path: '/main/user/userInfoModify',
               icon: 'suncaper-menu-unfold',
               title: '个人信息管理'
             }

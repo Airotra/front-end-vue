@@ -28,10 +28,28 @@
                 label="商品价格"
                 width="180">
         </el-table-column>
+        <el-table-column label="商品数量">
+          <template slot-scope="scope">
+            <el-button
+                    size="mini"
+                    type="info"
+                    icon="el-icon-remove"
+                    @click="reduceNumber(scope.row)"></el-button>
+            <span>{{scope.row.goodsNumber}}</span>
+            <el-button
+                    size="mini"
+                    type="info"
+                    icon="el-icon-circle-plus"
+                    @click="increaseNumber(scope.row)"></el-button>
+          </template>
+        </el-table-column>
         <el-table-column
-                prop="goodsNumber"
-                label="商品数量"
-                width="180">
+                label="操作"
+                width="100">
+          <template slot-scope="scope">
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            <el-button @click="handleRemove(scope.row)" type="text" size="small">移除</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <el-pagination
@@ -44,44 +62,92 @@
               :total="query.total">
       </el-pagination>
     </el-card>
+    <goods-detail ref="goodsDetail"></goods-detail>
+    <goods-remove ref="goodsRemove"></goods-remove>
   </div>
 </template>
 
 <script>
 import {trolleylist} from '@api/trolleylist'
+import {removegoods} from '@api/removegoods'
+import {goodsnumberChange} from '@api/goodsnumberChange'
+import GoodsDetail from '../../components/Trolley/TrolleyGoodsDetail'
+import GoodsRemove from '../../components/Trolley/TrolleyGoodsRemove'
 export default {
   name: 'Second',
+  components: {
+    GoodsDetail,
+    GoodsRemove
+  },
   data () {
     return {
       TrolleyGoods: [],
-      Goodsname: [],
       query: {
         pageNo: 1,
         pageSize: 5,
-        total: 0
+        total: 0,
+        id: 0,
+        goodsid: 0,
+        goodsnumber: 0
       }
     }
   },
+  created () {
+    this.getTrolley()
+  },
   methods: {
-    // 页面大小改变
-    handleSizeChange (val) {
-      console.log(`每页 ${val} 条`)
+    handleClick (obj) {
+      this.$refs.goodsDetail.show(obj)
     },
-    // 页码改变
-    handleCurrentChange (val) {
-      console.log(`当前页: ${val}`)
+    handleRemove (obj) {
+      this.query.goodsid = obj.goodsId
+      removegoods(this.query).then(res => {
+        this.$refs.goodsRemove.show(res.data)
+        this.getTrolley()
+      })
+    },
+    increaseNumber (obj) {
+      obj.goodsNumber++
+      this.query.goodsid = obj.goodsId
+      this.query.goodsnumber = obj.goodsNumber
+      goodsnumberChange(this.query)
+      this.getTrolley()
+    },
+    reduceNumber (obj) {
+      obj.goodsNumber--
+      this.query.goodsid = obj.goodsId
+      this.query.goodsnumber = obj.goodsNumber
+      goodsnumberChange(this.query)
+      this.getTrolley()
+      if (obj.goodsNumber === 0) {
+        removegoods(this.query).then(res => {
+          this.$refs.goodsRemove.show(res.data)
+          this.getTrolley()
+        })
+        this.getTrolley()
+      }
     },
     getTrolley () {
       this.$axios.get('/api/user/getTrolleyID', {params: {
         id: 1
       }}).then(res => {
-        trolleylist(res.data).then(res => {
-          console.info(res)
+        this.query.id = res.data
+        trolleylist(this.query).then(res => {
           this.TrolleyGoods = res.data.records
           this.query.pageNo = res.data.current
           this.query.total = res.data.total
         })
       })
+    },
+    // 页面大小改变
+    handleSizeChange (val) {
+      this.query.pageSize = val
+      this.getTrolley()
+    },
+    // 页码改变
+    handleCurrentChange (val) {
+      this.query.pageNo = val
+      this.getTrolley()
     }
   }
 }

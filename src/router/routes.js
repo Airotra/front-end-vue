@@ -64,6 +64,14 @@ const mainPage = [
             import(
                 /* webpackChunkName: "First" */ '../pages/main/admin/AdminInfo'
                 )
+      },
+      {
+        path: 'user/userAddressInfo',
+        name: 'addressInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/UserAddressInfo'
+                )
       }
     ]
   }

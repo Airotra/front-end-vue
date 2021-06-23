@@ -36,6 +36,11 @@ export default {
               path: '/main/user/userInfo',
               icon: 'suncaper-menu-unfold',
               title: '个人信息管理'
+            },
+            {
+              path: '/main/user/userAddressInfo',
+              icon: 'suncaper-menu-unfold',
+              title: '收货地址管理'
             }
           ]
         }

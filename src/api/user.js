@@ -7,3 +7,4 @@ export const _adminInfoSave = (query) => http.PUT('/api/admin/' + query.id, quer
 export const _userAddrInfo = (id) => http.GET('/api/user/getAddr', {id: id})
 export const _userAddrInfoSave = (query) => http.PUT('/api/adress/' + query.id, query)
 export const _addrDelete = (id) => http.DELETE('/api/adress/' + id)
+export const _addrAdd = (query) => http.POST('/api/adress', query)

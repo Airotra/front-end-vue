@@ -43,7 +43,9 @@
                     </template>
                 </el-table-column>
             </el-table>
+            <el-button type="primary" icon="el-icon-plus" circle style="margin-left: 96.5%; margin-top: 10px" @click="addAddr"></el-button>
             <addr-detail ref="addrDetail" @ok = 'getAddr'></addr-detail>
+            <addr-add ref="addrAdd" @ok = 'getAddr'></addr-add>
         </el-card>
     </div>
 </template>
@@ -52,11 +54,13 @@
     import {mapGetters} from 'vuex'
     import {_addrDelete, _userAddrInfo} from '../../../api/user'
     import addrDetail from '../components/user/AddrDetailDialog'
+    import addrAdd from '../components/user/AddrAddDialog'
 
     export default {
         name: 'UserAddressInfo',
         components: {
-            addrDetail
+            addrDetail,
+            addrAdd
         },
         data () {
           return {
@@ -116,6 +120,7 @@
                 this.$refs.addrDetail.show(this.addressData)
             },
             deleteClick (obj) {
+                console.info(obj)
                 this.$confirm('此操作将删除该地址, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
@@ -138,10 +143,26 @@
                                 type: 'success',
                                 message: `删除成功`
                             })
-                            this.$router.go(0)
+                            this.getAddr()
                         }
                     })
                 })
+            },
+            addAddr () {
+                if (this.address.length < 3) {
+                    this.$refs.addrAdd.show(this.userId)
+                } else {
+                    this.$alert('每个用户最多只能添加3个收货地址', '提示', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.$message({
+                                type: 'info',
+                                message: `每个用户最多只能添加3个收货地址`
+                            })
+                            this.getAddr()
+                        }
+                    })
+                }
             }
         }
     }

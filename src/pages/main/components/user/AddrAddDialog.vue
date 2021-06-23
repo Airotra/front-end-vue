@@ -53,7 +53,7 @@
 
 <script>
 
-    import {_userAddrInfoSave} from '../../../../api/user'
+    import {_addrAdd} from '../../../../api/user'
 
     const addressData = {
         '北京市': {
@@ -476,7 +476,7 @@
     }
 
     export default {
-        name: 'AddrDetailDialog',
+        name: 'AddrAddDialog',
         props: ['province', 'city', 'district', 'detail'],
         data () {
             return {
@@ -495,7 +495,6 @@
                 },
                 provinces: this.formatData(addressData),
                 address: {
-                    id: '',
                     userId: '',
                     provice: '',
                     city: '',
@@ -513,7 +512,7 @@
                 deep: true
             }
         },
-computed: {
+        computed: {
             citys: function () {
                 return this.formatData(addressData[this.form.province])
             },
@@ -524,9 +523,8 @@ computed: {
             }
         },
         methods: {
-            show (addressData) {
-                this.address = addressData
-                // console.info(this.address)
+            show (userId) {
+                this.address.userId = userId
                 this.dialogVisible = true
             },
             handleClose (done) {
@@ -543,7 +541,7 @@ computed: {
                 this.address.addr = this.form.detail
                 console.info(this.address)
                 if (this.form.province !== '' && this.form.city !== '' && this.form.district !== '' && this.form.detail !== '') {
-                     _userAddrInfoSave(this.address).then(res => {
+                    _addrAdd(this.address).then(res => {
                         if (res.status) {
                             this.$message({
                                 message: '保存成功',

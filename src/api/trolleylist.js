@@ -1,2 +1,2 @@
 import http from '@http/http'
-export const trolleylist = (id) => http.GET('/api/trolleyContainGoods/getGoodsID', {id: id})
+export const trolleylist = (query) => http.GET('/api/trolleyContainGoods/getTrolleyGoods', query)

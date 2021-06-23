@@ -39,7 +39,7 @@
                         width="100">
                     <template slot-scope="scope">
                         <el-button @click="handleClick(scope.row)" type="text" size="small">修改</el-button>
-                        <el-button type="text" size="small">删除</el-button>
+                        <el-button @click="deleteClick(scope.row)" type="text" size="small">删除</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -50,7 +50,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import {_userAddrInfo} from '../../../api/user'
+    import {_addrDelete, _userAddrInfo} from '../../../api/user'
     import addrDetail from '../components/user/AddrDetailDialog'
 
     export default {
@@ -114,6 +114,34 @@
                 this.setAddrData(obj)
                 // console.info(this.addressData)
                 this.$refs.addrDetail.show(this.addressData)
+            },
+            deleteClick (obj) {
+                this.$confirm('此操作将删除该地址, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.delete(obj)
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    })
+                })
+            },
+            delete (obj) {
+                _addrDelete(obj.id).then(res => {
+                    this.$alert('删除成功', '提示', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.$message({
+                                type: 'success',
+                                message: `删除成功`
+                            })
+                            this.$router.go(0)
+                        }
+                    })
+                })
             }
         }
     }

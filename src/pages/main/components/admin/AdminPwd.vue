@@ -6,14 +6,8 @@
             center
             :before-close="handleClose">
         <el-form ref="form" label-width="80px">
-            <el-form-item label="昵称">
-                <el-input v-model="user.nickName"></el-input>
-            </el-form-item>
-            <el-form-item label="手机号">
-                <el-input v-model="user.phoneNumber"></el-input>
-            </el-form-item>
             <el-form-item label="密码">
-                <el-input v-model="user.password" show-password></el-input>
+                <el-input v-model="admin.adminPassword" show-password></el-input>
             </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
@@ -24,20 +18,19 @@
 </template>
 
 <script>
-    import { _userInfoSave } from '@api/user'
-
+    import { _adminInfoSave } from '@api/user'
     export default {
-        name: 'UserDetailDialog',
+        name: 'AdminPwd',
         data () {
             return {
                 dialogVisible: false,
-                user: {}
+                admin: {}
             }
         },
         methods: {
-            show (user) {
+            show (admin) {
                 this.dialogVisible = true
-                this.user = user
+                this.admin = admin
             },
             handleClose (done) {
                 this.$confirm('确认关闭？')
@@ -47,9 +40,10 @@
                     .catch(_ => {})
             },
             save () {
-                if (this.user.nickName !== '' && this.user.phoneNumber !== '' && this.user.password !== '') {
+                console.info(this.admin.adminPassword)
+                if (this.admin.adminPassword !== '') {
                     // console.info(this.user)
-                    _userInfoSave(this.user).then(res => {
+                    _adminInfoSave(this.admin).then(res => {
                         if (res.status) {
                             this.$message({
                                 message: '保存成功',

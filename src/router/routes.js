@@ -56,6 +56,14 @@ const mainPage = [
             import(
                 /* webpackChunkName: "First" */ '../pages/main/user/UserInfo'
                 )
+      },
+      {
+        path: 'admin/adminInfo',
+        name: 'adminInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/admin/AdminInfo'
+                )
       }
     ]
   }

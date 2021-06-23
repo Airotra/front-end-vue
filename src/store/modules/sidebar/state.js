@@ -41,7 +41,26 @@ export default {
         }
       ]
     },
-    2: {},
+    2: {
+        main: [
+          {
+            groupTitle: '个人中心'
+          },
+          {
+            path: '/main/admin',
+            icon: 'suncaper-menu-unfold',
+            title: '个人信息',
+            group: 'admin',
+            children: [
+              {
+                path: '/main/admin/adminInfo',
+                icon: 'suncaper-menu-unfold',
+                title: '个人信息管理'
+              }
+            ]
+          }
+        ]
+    },
     3: {
       main: [
         {
@@ -76,11 +95,6 @@ export default {
           children: [
             {
               path: '/main/user/userInfo',
-              icon: 'suncaper-menu-unfold',
-              title: '个人信息查看'
-            },
-            {
-              path: '/main/user/userInfoModify',
               icon: 'suncaper-menu-unfold',
               title: '个人信息管理'
             }

@@ -102,7 +102,7 @@
         methods: {
             getAddr () {
                 _userAddrInfo(this.userId).then(res => {
-                    // console.info(res)
+                    console.info(res)
                     this.address = res.data.list
                 })
             },
@@ -115,24 +115,48 @@
                 this.addressData.addr = obj.addr
             },
             handleClick (obj) {
-                this.setAddrData(obj)
-                // console.info(this.addressData)
-                this.$refs.addrDetail.show(this.addressData)
+                if (obj.id !== null) {
+                    this.setAddrData(obj)
+                    // console.info(this.addressData)
+                    this.$refs.addrDetail.show(this.addressData)
+                } else {
+                    this.$alert('无收货地址不能修改', '提示', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.$message({
+                                type: 'info',
+                                message: `无收货地址不能修改`
+                            })
+                        }
+                    })
+                }
             },
             deleteClick (obj) {
-                console.info(obj)
-                this.$confirm('此操作将删除该地址, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.delete(obj)
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
+                // console.info(obj)
+                if (obj.id !== null) {
+                    this.$confirm('此操作将删除该地址, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.delete(obj)
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        })
                     })
-                })
+                } else {
+                    this.$alert('无收货地址不能删除', '提示', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.$message({
+                                type: 'info',
+                                message: `无收货地址不能修改`
+                            })
+                        }
+                    })
+                }
             },
             delete (obj) {
                 _addrDelete(obj.id).then(res => {

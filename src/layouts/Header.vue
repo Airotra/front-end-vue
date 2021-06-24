@@ -19,12 +19,15 @@
       <span class="header-title text-center">欢迎您，{{userName}} {{roleName}}</span>
     </div>
     <div class="header-right">
-      <s-icon
+      <s-icon v-if="userType !== 3"
         icon="suncaper-user"
         class="text-center"
       />
-      <span class="text-center" >
+      <span class="text-center" v-if="userType !== 3" >
           {{userName}}
+        </span>
+      <span class="text-center" v-if="userType === 3" >
+          游客用户请登录
         </span>
       <a
         href="javascript:;"
@@ -32,9 +35,18 @@
         @click="logout"
         role="button"
       >
-        <s-tooltip effect="dark" content="退出" placement="bottom">
+        <s-tooltip effect="dark" content="退出" placement="bottom" v-if="userType !== 3">
           <s-icon
             icon="suncaper-quit"
+          />
+        </s-tooltip>
+        <s-tooltip effect="dark" content="登录" placement="bottom" v-if="userType === 3">
+          <s-icon v-if="userType !== 3"
+                  icon="suncaper-quit"
+          />
+          <s-icon v-if="userType === 3"
+                  icon="suncaper-user"
+                  class="text-center"
           />
         </s-tooltip>
       </a>
@@ -45,6 +57,7 @@
 <script>
 import Icon from '@/components/Icon'
 import {Tooltip} from 'element-ui'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 's-header',
@@ -58,6 +71,13 @@ export default {
   components: {
     's-icon': Icon,
     's-tooltip': Tooltip
+  },
+  computed: {
+    ...mapGetters({
+      userType: 'user/getUserType',
+      userId: 'user/getUserId',
+      getSidebarList: 'sidebar/getSidebarList'
+    })
   }
 }
 </script>

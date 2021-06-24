@@ -3,7 +3,22 @@ const loginPage = [
     path: '/login',
     name: 'login',
     component: () =>
-      import(/* webpackChunkName: "Login" */ '../pages/login/Login')
+        import(/* webpackChunkName: "Login" */ '../pages/login/Login')
+  },
+  {
+    path: '/adminLogin',
+    name: 'adminLogin',
+    component: () =>
+        import(/* webpackChunkName: "adminLogin" */ '../pages/login/AdminLogin')
+  }
+]
+
+const registerPage = [
+  {
+    path: '/register',
+    name: 'register',
+    component: () =>
+        import(/* webpackChunkName: "Register" */ '../pages/register/Register')
   }
 ]
 
@@ -33,6 +48,46 @@ const mainPage = [
             import(
               /* webpackChunkName: "First" */ '../pages/main/routes/second/Second'
             )
+      },
+      {
+        path: 'user/userInfo',
+        name: 'userInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/UserInfo'
+                )
+      },
+      {
+        path: 'admin/adminInfo',
+        name: 'adminInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/admin/AdminInfo'
+                )
+      },
+      {
+        path: 'admin/couponManage',
+        name: 'couponManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/admin/CouponManage'
+                )
+      },
+      {
+        path: 'user/userAddressInfo',
+        name: 'addressInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/UserAddressInfo'
+                )
+      },
+      {
+        path: 'user/couponInfo',
+        name: 'couponInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/CouponInfo'
+                )
       }
     ]
   }
@@ -62,4 +117,4 @@ const errorPage = [
     redirect: '/notFound'
   }
 ]
-export default [...loginPage, ...mainPage, ...errorPage]
+export default [...loginPage, ...registerPage, ...mainPage, ...errorPage]

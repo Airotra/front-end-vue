@@ -102,7 +102,7 @@
         methods: {
             getAddr () {
                 _userAddrInfo(this.userId).then(res => {
-                    console.info(res)
+                   // console.info(res)
                     this.address = res.data.list
                 })
             },

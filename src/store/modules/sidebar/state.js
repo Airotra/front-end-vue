@@ -41,6 +41,11 @@ export default {
               path: '/main/user/userAddressInfo',
               icon: 'suncaper-menu-unfold',
               title: '收货地址管理'
+            },
+            {
+              path: '/main/user/couponInfo',
+              icon: 'suncaper-menu-unfold',
+              title: '优惠券管理'
             }
           ]
         }
@@ -86,22 +91,6 @@ export default {
               path: '/main/second/second',
               icon: 'suncaper-menu-unfold',
               title: '二级菜单'
-            }
-          ]
-        },
-        {
-          groupTitle: '个人中心'
-        },
-        {
-          path: '/main/user',
-          icon: 'suncaper-menu-unfold',
-          title: '个人信息',
-          group: 'user',
-          children: [
-            {
-              path: '/main/user/userInfo',
-              icon: 'suncaper-menu-unfold',
-              title: '个人信息管理'
             }
           ]
         }

@@ -48,16 +48,16 @@
                         <p style="margin-left: 5%">手机号： {{phoneNumber}}</p>
                     </div>
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
-                        <p style="margin-left: 5%">省份： {{nickName}}</p>
+                        <p style="margin-left: 5%">省份： {{address.provice}}</p>
                     </div>
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
-                        <p style="margin-left: 5%">市/县： {{phoneNumber}}</p>
+                        <p style="margin-left: 5%">市/县： {{address.city}}</p>
                     </div>
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
-                        <p style="margin-left: 5%">区/乡： {{point}}</p>
+                        <p style="margin-left: 5%">区/乡： {{address.district}}</p>
                     </div>
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
-                        <p style="margin-left: 5%">详细地址： 普通用户</p>
+                        <p style="margin-left: 5%">详细地址：{{address.addr}}</p>
                     </div>
                 </div>
             </div>
@@ -70,6 +70,7 @@
     import {mapGetters} from 'vuex'
     import userDetail from '../components/user/UserDetailDialog'
     import { _userInfo } from '@api/user'
+    import {_userAddrInfo} from '../../../api/user'
 
     export default {
         name: 'UserInfo',
@@ -81,7 +82,6 @@
                 nickName: '',
                 phoneNumber: '',
                 avatar: '',
-                address: '',
                 point: '',
                 password: '',
                 user: {
@@ -89,7 +89,8 @@
                     nickName: '',
                     phoneNumber: '',
                     password: ''
-                }
+                },
+                address: []
             }
         },
         computed: {
@@ -113,9 +114,16 @@
                     })
             } else {
                 this.getData()
+                this.getAddr()
             }
         },
         methods: {
+            getAddr () {
+                _userAddrInfo(this.userId).then(res => {
+                    // console.info(res)
+                    this.address = res.data.list[0]
+                })
+            },
             handleClick () {
                 this.setUserData()
                 this.$refs.userDetail.show(this.user)

@@ -72,6 +72,14 @@ const mainPage = [
             import(
                 /* webpackChunkName: "First" */ '../pages/main/user/UserAddressInfo'
                 )
+      },
+      {
+        path: 'user/couponInfo',
+        name: 'couponInfo',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/user/CouponInfo'
+                )
       }
     ]
   }

@@ -30,7 +30,7 @@
                         <el-table-column
                                 prop="time"
                                 label="到期时间"
-                                width="200">
+                                width="260">
                         </el-table-column>
                     </el-table>
                 </el-aside>
@@ -126,13 +126,13 @@
                 console.info(this.receivedCoupon)
                 _updateCouponQuantity(this.coupon).then(res => {
                     if (res.status) {
-                        console.info('更新数量成功')
+                        // console.info('更新数量成功')
                         this.getCoupon()
                     }
                 })
                 _userRecCoupon(this.receivedCoupon).then(res => {
                     if (res.status) {
-                        console.info('增加记录成功')
+                        // console.info('增加记录成功')
                         this.getUserCoupon()
                     }
                 })

@@ -39,7 +39,6 @@
 </template>
 
 <script>
-    import {_saveLocalStorage} from '../../tools/utils'
 
 export default {
     name: 'login',
@@ -58,7 +57,7 @@ export default {
                         password: this.password
                     }
                 }).then(res => {
-                    console.info(res.data)
+                    // console.info(res.data)
                     if (res.data.data == null) {
                         this.$alert('账号或密码错误', '登录失败', {
                             confirmButtonText: '确定',
@@ -70,9 +69,6 @@ export default {
                             }
                         })
                     } else {
-                        _saveLocalStorage('isLogin', true)
-                        _saveLocalStorage('id', res.data.data.id)
-                        _saveLocalStorage('type', res.data.data.type)
                         this.$router.push('/main/first')
                         this.$router.go(0)
                     }

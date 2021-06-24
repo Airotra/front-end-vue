@@ -7,7 +7,7 @@ export default {
       roleName: '管理员'
     },
     3: {
-      roleName: '游客'
+      roleName: '游客用户'
     }
   }
 }

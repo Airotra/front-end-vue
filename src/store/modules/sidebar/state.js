@@ -68,6 +68,14 @@ export default {
                 title: '个人信息管理'
               }
             ]
+          },
+          {
+            groupTitle: '优惠券'
+          },
+          {
+            path: '/main/admin/CouponManage',
+            icon: 'suncaper-menu-unfold',
+            title: '优惠券管理'
           }
         ]
     },

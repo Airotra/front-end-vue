@@ -66,6 +66,14 @@ const mainPage = [
                 )
       },
       {
+        path: 'admin/couponManage',
+        name: 'couponManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/admin/CouponManage'
+                )
+      },
+      {
         path: 'user/userAddressInfo',
         name: 'addressInfo',
         component: () =>

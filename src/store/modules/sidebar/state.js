@@ -11,17 +11,37 @@ export default {
           title: '一级菜单1'
         },
         {
-          path: '/main/second',
+          path: '/main/PointShoppingMall',
           icon: 'suncaper-menu-unfold',
-          title: '一级菜单2',
-          group: 'second',
+          title: '积分商城',
+          group: 'PointShoppingMall',
           children: [
             {
-              path: '/main/second/second',
+              path: '/main/PointShoppingMall/Clothes',
               icon: 'suncaper-menu-unfold',
-              title: '二级菜单'
+              title: '服装百货'
+            },
+            {
+              path: '/main/PointShoppingMall/Mobile',
+              icon: 'suncaper-menu-unfold',
+              title: '数码电器'
+            },
+            {
+              path: '/main/PointShoppingMall/Food',
+              icon: 'suncaper-menu-unfold',
+              title: '食品美妆'
             }
           ]
+        },
+        {
+          path: '/main/Trolley',
+          icon: 'suncaper-menu-unfold',
+          title: '购物车'
+        },
+        {
+          path: '/main/second',
+          icon: 'suncaper-menu-unfold',
+          title: '二级菜单'
         }
       ]
     }

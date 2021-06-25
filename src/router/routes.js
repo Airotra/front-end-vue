@@ -27,7 +27,47 @@ const mainPage = [
             )
       },
       {
-        path: 'second/second',
+        path: 'PointShoppingMall/PointShoppingMall',
+        name: 'PointShoppingMall/PointShoppingMall',
+        component: () =>
+            import(
+              '../pages/main/routes/PointShoppingMall/PointShoppingMall'
+            )
+      },
+      {
+        path: 'PointShoppingMall/Clothes',
+        name: 'PointShoppingMall/Clothes',
+        component: () =>
+            import(
+              '../pages/main/routes/PointShoppingMall/Clothes'
+            )
+      },
+      {
+        path: 'PointShoppingMall/Mobile',
+        name: 'PointShoppingMall/Mobile',
+        component: () =>
+            import(
+              '../pages/main/routes/PointShoppingMall/Mobile'
+            )
+      },
+      {
+        path: 'PointShoppingMall/Food',
+        name: 'PointShoppingMall/Food',
+        component: () =>
+            import(
+              '../pages/main/routes/PointShoppingMall/Food'
+            )
+      },
+      {
+        path: 'Trolley',
+        name: 'Trolley',
+        component: () =>
+            import(
+              /* webpackChunkName: "First" */ '../pages/main/routes/Trolley/Trolley'
+            )
+      },
+      {
+        path: 'second',
         name: 'second',
         component: () =>
             import(

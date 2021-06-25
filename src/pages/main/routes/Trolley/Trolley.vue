@@ -9,10 +9,16 @@
       </div>
     </el-card>
     <el-card class="crumbs-card">
-      <el-button @click="getTrolley" size="small" type="primary">我的购物车</el-button>
+      <el-tag type="info" style="font-weight: bold; font-family: 黑体; color:yellow; background-color: royalblue; ">我的购物车</el-tag>
       <el-table
-      :data="TrolleyGoods"
-      style="width:100%">
+              ref="multipleTable"
+              :data="TrolleyGoods"
+              style="width:100%"
+              @select="handleSelect">
+        <el-table-column
+                type="selection"
+                width="55">
+        </el-table-column>
         <el-table-column
               prop="goodsId"
               label="商品编号"
@@ -28,7 +34,7 @@
                 label="商品价格"
                 width="180">
         </el-table-column>
-        <el-table-column label="商品数量">
+        <el-table-column label="商品数量" width="280">
           <template slot-scope="scope">
             <el-button
                     size="mini"
@@ -45,10 +51,10 @@
         </el-table-column>
         <el-table-column
                 label="操作"
-                width="100">
+                width="300">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button @click="handleRemove(scope.row)" type="text" size="small">移除</el-button>
+            <el-button @click="handleClick(scope.row)" type="primary" size="small">查看</el-button>
+            <el-button @click="handleRemove(scope.row)" type="primary" size="small">移除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -56,14 +62,18 @@
               @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
               :current-page="query.pageNo"
-              :page-sizes="[5, 10, 20, 50]"
+              :page-sizes="[10, 20, 30, 50]"
               :page-size="5"
               layout="total, sizes, prev, pager, next, jumper"
               :total="query.total">
       </el-pagination>
+      <div style="margin-top: 20px">
+        <el-button type= "primary" @click="SettlePrice(GoodsSelection)">结算</el-button>
+      </div>
     </el-card>
     <goods-detail ref="goodsDetail"></goods-detail>
     <goods-remove ref="goodsRemove"></goods-remove>
+    <confirm-settlement ref="confirmSettle"></confirm-settlement>
   </div>
 </template>
 
@@ -73,18 +83,22 @@ import {removegoods} from '@api/removegoods'
 import {goodsnumberChange} from '@api/goodsnumberChange'
 import GoodsDetail from '../../components/Trolley/TrolleyGoodsDetail'
 import GoodsRemove from '../../components/Trolley/TrolleyGoodsRemove'
+import ConfirmSettlement from '../../components/Trolley/ConfirmSettlement'
+
 export default {
   name: 'Second',
   components: {
     GoodsDetail,
-    GoodsRemove
+    GoodsRemove,
+    ConfirmSettlement
   },
   data () {
     return {
       TrolleyGoods: [],
+      GoodsSelection: [],
       query: {
         pageNo: 1,
-        pageSize: 5,
+        pageSize: 10,
         total: 0,
         id: 0,
         goodsid: 0,
@@ -96,9 +110,11 @@ export default {
     this.getTrolley()
   },
   methods: {
+    // 点击获取购物车中商品信息
     handleClick (obj) {
       this.$refs.goodsDetail.show(obj)
     },
+    // 点击移除购物车中商品
     handleRemove (obj) {
       this.query.goodsid = obj.goodsId
       removegoods(this.query).then(res => {
@@ -106,6 +122,7 @@ export default {
         this.getTrolley()
       })
     },
+    // 增加购物车内商品数量
     increaseNumber (obj) {
       obj.goodsNumber++
       this.query.goodsid = obj.goodsId
@@ -113,6 +130,7 @@ export default {
       goodsnumberChange(this.query)
       this.getTrolley()
     },
+    // 减少购物车内商品数量
     reduceNumber (obj) {
       obj.goodsNumber--
       this.query.goodsid = obj.goodsId
@@ -127,10 +145,16 @@ export default {
         this.getTrolley()
       }
     },
+    handleSelect (val) {
+      this.GoodsSelection = val
+    },
+    // 获取购物车中信息
     getTrolley () {
       this.$axios.get('/api/user/getTrolleyID', {params: {
+        // 获取用户id，作为参数传入
         id: 1
       }}).then(res => {
+        // 获取购物车id，作为参数传入
         this.query.id = res.data
         trolleylist(this.query).then(res => {
           this.TrolleyGoods = res.data.records
@@ -138,6 +162,11 @@ export default {
           this.query.total = res.data.total
         })
       })
+    },
+    // 结算购物车内商品信息
+    SettlePrice (GoodsSelection) {
+      console.info(GoodsSelection)
+      this.$refs.confirmSettle.show(GoodsSelection)
     },
     // 页面大小改变
     handleSizeChange (val) {

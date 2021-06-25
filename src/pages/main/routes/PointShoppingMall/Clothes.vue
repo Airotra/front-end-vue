@@ -30,9 +30,7 @@
                   <router-link to='/main' >
                       <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
                   </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="buy('白色红纹鸭舌帽', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box2" >
@@ -370,15 +368,22 @@
               </div>
           </div>
       </el-card>
+
+      <point-goods-buy ref="PointgoodsBuy"></point-goods-buy>
   </div>
 </template>
 
 <script>
+import PointGoodsBuy from '../../components/Trolley/PointGoodsBuy'
 
 export default {
   name: 'second',
+  components: {
+    PointGoodsBuy
+  },
   data () {
     return {
+      userPoint: 0,
       Hatimg: require('@/assets/images/hat.png'),
       Shoesimg: require('@/assets/images/shoes.png'),
       Combimg: require('@/assets/images/Comb.png'),
@@ -397,11 +402,16 @@ export default {
     }
   },
   methods: {
-    haha (key) {
-      alert(key)
-    },
-    handleClick () {
-
+    buy (name, point) {
+      console.info(point)
+      this.$axios.get('/api/user/getUserDetail', {params: {
+        // 获取用户的详细信息，主要为用户积分点
+        id: 1
+      }}).then(res => {
+        this.userPoint = res.data.data.point
+        console.info(this.userPoint)
+      })
+      this.$refs.PointgoodsBuy.show(name, point, this.userPoint)
     }
   }
 }

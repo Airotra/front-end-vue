@@ -19,7 +19,7 @@ export default {
       logo: {
         src: logo,
         alt: '上程数据',
-        firstDes: '上程数据',
+        firstDes: '综合网上购物商城',
         secondDes: '广泛UE模板'
       }
     }

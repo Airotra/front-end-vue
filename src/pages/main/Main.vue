@@ -11,7 +11,7 @@
 import {mapGetters} from 'vuex'
 import Layout from '@/layouts/Layout'
 import logo from '@/assets/images/logo.png'
-import {_saveLocalStorage} from '../../tools/utils'
+import {_logout} from '../../api/user'
 
 export default {
   name: 'Main',
@@ -46,12 +46,7 @@ export default {
                     type: 'success',
                     message: '注销登录成功!'
                   },
-                  _saveLocalStorage('isLogin', false),
-                  _saveLocalStorage('id', null),
-                  _saveLocalStorage('type', 3),
-                  this.$axios.get('/api/user/logout', {
-                    params: {}
-                  }).then(res => {
+                  _logout().then(res => {
                     this.$router.push('/login')
                   })
           )

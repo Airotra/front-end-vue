@@ -73,7 +73,6 @@ export default {
                         })
                     } else {
                         this.$router.push('/main/first')
-                        this.$router.go(0)
                     }
                 })
             } else {
@@ -90,7 +89,6 @@ export default {
         },
         refresh () {
             this.$router.push('/main/first')
-            this.$router.go(0)
         }
     }
 }

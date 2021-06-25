@@ -18,7 +18,7 @@
                 </div>
                 <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="userLogin">登录</el-button>
                 <div style="position: relative; left: 40%;bottom: -55px; width: fit-content;">
-                    <el-link type="primary" href="/#/main/first" @click.native="refresh"><i class="el-icon-user"></i>游客登录</el-link>
+                    <el-link type="primary" @click.native="touristLogin"><i class="el-icon-user"></i>游客登录</el-link>
                 </div>
                 <div class="register" style="margin-top: 77px; margin-left: 115px;">
                     <p style="display: inline;">还没有账号？</p>
@@ -90,7 +90,7 @@ export default {
                 })
             }
         },
-        refresh () {
+        touristLogin () {
             store.dispatch('user/fetchUserInfo').then(res => {
                 this.$router.push('/main/first')
             })

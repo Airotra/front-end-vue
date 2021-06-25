@@ -41,6 +41,7 @@
 <script>
 
 import {_userLogin} from '../../api/user'
+import store from '../../store/'
 
 export default {
     name: 'login',
@@ -72,7 +73,9 @@ export default {
                             }
                         })
                     } else {
-                        this.$router.push('/main/first')
+                        store.dispatch('user/fetchUserInfo').then(res => {
+                            this.$router.push('/main/first')
+                        })
                     }
                 })
             } else {
@@ -88,7 +91,9 @@ export default {
             }
         },
         refresh () {
-            this.$router.push('/main/first')
+            store.dispatch('user/fetchUserInfo').then(res => {
+                this.$router.push('/main/first')
+            })
         }
     }
 }

@@ -37,6 +37,7 @@
 <script>
 
 import {_adminLogin} from '../../api/admin'
+import store from '../../store/'
 
 export default {
   name: 'adminLogin',
@@ -68,7 +69,9 @@ export default {
                             }
                         })
                     } else {
-                        this.$router.push('/main/first')
+                        store.dispatch('user/fetchUserInfo').then(res => {
+                            this.$router.push('/main/first')
+                        })
                     }
                 })
             } else {

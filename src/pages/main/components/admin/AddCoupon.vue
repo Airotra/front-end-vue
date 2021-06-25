@@ -30,15 +30,31 @@
 </template>
 
 <script>
-    import {_modifyCoupon, _modifyUserCoupon} from '../../../../api/admin'
+    import {mapGetters} from 'vuex'
+    import {_addrAdminProvideCoupon, _addrCoupon} from '../../../../api/admin'
 
     export default {
-        name: 'ModifyCoupon',
+        name: 'AddCoupon',
+        computed: {
+            ...mapGetters({
+                userType: 'user/getUserType',
+                userId: 'user/getUserId',
+                getSidebarList: 'sidebar/getSidebarList'
+            })
+        },
         data () {
-          return {
-              dialogVisible: false,
-              coupon: {}
-          }
+            return {
+                dialogVisible: false,
+                adminProvideCoupon: {
+                    adminId: '',
+                    couponId: ''
+                },
+                coupon: {
+                    amount: '',
+                    quantity: '',
+                    time: ''
+                }
+            }
         },
         methods: {
             handleClose (done) {
@@ -48,22 +64,26 @@
                     })
                     .catch(_ => {})
             },
-            show (obj) {
+            show () {
                 this.dialogVisible = true
-                this.coupon = obj
-                // console.info(this.coupon)
             },
             save () {
                 // console.info(this.coupon)
-                if (this.coupon.amount !== '' && this.coupon.quantity !== '' && this.coupon.time !== '') {
-                    _modifyCoupon(this.coupon).then(res => {
+                if (this.coupon.time !== '' && this.coupon.quantity !== '' && this.coupon.amount !== '') {
+                    _addrCoupon(this.coupon).then(res => {
                         if (res.status) {
                             this.$message({
                                 message: '保存成功',
                                 type: 'success'
                             })
-                            _modifyUserCoupon(this.coupon).then(res => {
-                                console.info('用户优惠券更新完成')
+                            // console.info(res)
+                            this.adminProvideCoupon.couponId = res.data.couponId
+                            this.adminProvideCoupon.adminId = this.userId
+                            // console.info(this.adminProvideCoupon)
+                            _addrAdminProvideCoupon(this.adminProvideCoupon).then(res => {
+                                if (res.status) {
+                                    // console.info('管理员优惠券表更新成功')
+                                }
                             })
                             this.dialogVisible = false
                             this.$emit('ok')

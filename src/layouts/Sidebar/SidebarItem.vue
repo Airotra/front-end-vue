@@ -1,6 +1,6 @@
 <template>
   <div class="menu-wrapper">
-    <template v-for="item in sidebarList">
+    <div v-for="item in sidebarList" :key="item.groupId">
       <p class="sidebarItem-groupTitle" v-if="item.hasOwnProperty('groupTitle')" :key="item.groupTitle">{{item.groupTitle}}</p>
       <s-submenu
         :popper-append-to-body="false"
@@ -10,18 +10,18 @@
           <span v-if="item.title" slot="title">{{item.title}}</span>
         </template>
 
-        <template v-for="child in item.children">
+        <div v-for="child in item.children" :key="child.pathinfo">
           <s-menu-item :index="child.path" :key="child.path">
             <s-icon v-if="child.icon" :icon="child.icon" />
             <span v-if="child.title" slot="title">{{child.title}}</span>
           </s-menu-item>
-        </template>
+        </div>
       </s-submenu>
       <s-menu-item v-else :index="item.path" :class="{'submenu-title-noDropdown':!isNest}" :key="item.path">
         <s-icon v-if="item.icon" :icon="item.icon" />
         <span v-if="item.title" slot="title">{{item.title}}</span>
       </s-menu-item>
-    </template>
+    </div>
   </div>
 </template>
 

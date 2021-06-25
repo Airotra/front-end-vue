@@ -45,10 +45,12 @@
                             </template>
                         </el-table-column>
                     </el-table>
+                    <el-button type="primary" icon="el-icon-plus" circle style="margin-left: 96.5%; margin-top: 10px" @click="addCoupon"></el-button>
                 </el-main>
             </el-container>
         </el-card>
         <modify-coupon ref="couponManage" @ok = 'getCoupons'></modify-coupon>
+        <add-coupon ref="addCoupon" @ok = 'getCoupons'></add-coupon>
     </div>
 </template>
 
@@ -56,28 +58,17 @@
     import {mapGetters} from 'vuex'
     import {_getAllCoupon} from '../../../api/admin'
     import modifyCoupon from '../components/admin/ModifyCoupon'
+    import addCoupon from '../components/admin/AddCoupon'
 
     export default {
         name: 'CouponManage',
         components: {
-            modifyCoupon
+            modifyCoupon,
+            addCoupon
         },
         data () {
             return {
-                coupons: [],
-                provideCoupon: {
-                    adminId: '',
-                    couponId: '',
-                    amount: '',
-                    quantity: '',
-                    time: ''
-                },
-                coupon: {
-                    couponId: '',
-                    amount: '',
-                    quantity: '',
-                    time: ''
-                }
+                coupons: []
             }
         },
         computed: {
@@ -96,10 +87,26 @@
             modifyCoupon (obj) {
                 // console.info(obj)
                 this.$refs.couponManage.show(obj)
+            },
+            addCoupon () {
+                this.$refs.addCoupon.show()
             }
         },
         created () {
-            this.getCoupons()
+            if (this.userType !== 2) {
+                this.$alert('请登录后再进行优惠券管理', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+                        this.$message({
+                            type: 'info',
+                            message: `请登录后再进行优惠券管理`
+                        })
+                        this.$router.push('/login')
+                    }
+                })
+            } else {
+                this.getCoupons()
+            }
         }
     }
 </script>

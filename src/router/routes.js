@@ -128,6 +128,23 @@ const mainPage = [
             import(
                 /* webpackChunkName: "First" */ '../pages/main/user/CouponInfo'
                 )
+      },
+      {
+        // 这里的path是拼接到网址的，应该与导航栏对应
+        path: 'goods/goods',
+        name: 'goods',
+        component: () =>
+            import(
+                /* webpackChunkName: "Goods" */ '../pages/main/routes/goods/Goods'
+                )
+      },
+      {
+        path: 'goodsManage/goodsManage',
+        name: 'goodsManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "Goods" */ '../pages/main/routes/goodsManage/GoodsManage'
+                )
       }
     ]
   }

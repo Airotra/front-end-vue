@@ -35,27 +35,29 @@
 </template>
 
 <script>
-import {_saveLocalStorage} from '../../tools/utils'
+
+import {_adminLogin} from '../../api/admin'
 
 export default {
   name: 'adminLogin',
     data () {
         return {
             account: '',
-            password: ''
+            password: '',
+            admin: {
+                adminAccount: '',
+                adminPassword: ''
+            }
         }
     },
     methods: {
         adminLogin () {
             if (this.account !== '' && this.password !== '') {
-                this.$axios.get('/api/admin/adminLogin', {
-                    params: {
-                        adminAccount: this.account,
-                        adminPassword: this.password
-                    }
-                }).then(res => {
-                    console.info(res.data)
-                    if (res.data.data == null) {
+                this.admin.adminAccount = this.account
+                this.admin.adminPassword = this.password
+                _adminLogin(this.admin).then(res => {
+                    // console.info(res.data)
+                    if (res.data == null) {
                         this.$alert('账号或密码错误', '登录失败', {
                             confirmButtonText: '确定',
                             callback: action => {
@@ -66,8 +68,6 @@ export default {
                             }
                         })
                     } else {
-                        _saveLocalStorage('isLogin', true)
-                        _saveLocalStorage('type', res.data.data.type)
                         this.$router.push('/main/first')
                         this.$router.go(0)
                     }

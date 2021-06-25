@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import {_userRegister} from '../../api/user'
+
 export default {
     name: 'register',
     data () {
@@ -65,7 +67,14 @@ export default {
             account: '',
             password: '',
             repassword: '',
-            agreeRegister: false
+            agreeRegister: false,
+            user: {
+                nickName: '',
+                account: '',
+                password: '',
+                type: 1,
+                point: 0
+            }
         }
     },
     methods: {
@@ -101,16 +110,12 @@ export default {
                     }
                 })
             } else {
-                var params = new URLSearchParams()
-                params.append('nickName', this.nickName)
-                params.append('phoneNumber', this.account)
-                params.append('password', this.password)
-                params.append('type', 1)
-                params.append('point', 0)
-                this.$axios.get('/api/user/userRegister', {
-                    params: params
-                }).then(res => {
-                    console.info(res)
+                this.user.nickName = this.nickName
+                this.user.phoneNumber = this.account
+                this.user.password = this.password
+
+                _userRegister(this.user).then(res => {
+                    // console.info(res)
                     if (res.data === false) {
                         this.$alert('手机号已被注册，请直接登录', '提示', {
                             confirmButtonText: '确定',

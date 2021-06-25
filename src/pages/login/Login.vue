@@ -40,25 +40,28 @@
 
 <script>
 
+import {_userLogin} from '../../api/user'
+
 export default {
     name: 'login',
     data () {
       return {
           account: '',
-          password: ''
+          password: '',
+          user: {
+              phoneNumber: '',
+              password: ''
+          }
       }
     },
     methods: {
         userLogin () {
             if (this.account !== '' && this.password !== '') {
-                this.$axios.get('/api/user/userLogin', {
-                    params: {
-                        phoneNumber: this.account,
-                        password: this.password
-                    }
-                }).then(res => {
+                this.user.phoneNumber = this.account
+                this.user.password = this.password
+                _userLogin(this.user).then(res => {
                     // console.info(res.data)
-                    if (res.data.data == null) {
+                    if (res.data == null) {
                         this.$alert('账号或密码错误', '登录失败', {
                             confirmButtonText: '确定',
                             callback: action => {

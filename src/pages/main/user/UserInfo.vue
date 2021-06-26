@@ -4,7 +4,7 @@
             <div class="crumbs">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/main/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item :to="{ path: '/main/first' }">个人信息管理</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/main/user/userInfo' }">个人信息管理</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
         </el-card>
@@ -65,6 +65,10 @@
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
                         <p style="margin-left: 5%">详细地址：{{address.addr}}</p>
                     </div>
+                    <div style="border-bottom: 1px solid rgb(240,240,240)">
+                        <p style="margin-left: 5%">地址编号：0</p>
+                    </div>
+                    <el-button type="text" size="medium" style="float: right; margin-right: 5%; margin-top: 5px" @click="handleClick2">编辑</el-button>
                 </div>
             </div>
         </el-card>
@@ -135,6 +139,9 @@
             handleClick () {
                 this.setUserData()
                 this.$refs.userDetail.show(this.user)
+            },
+            handleClick2 () {
+                this.$router.push('/main/user/userAddressInfo')
             },
             setUserData () {
                 this.user.id = this.userId
@@ -211,7 +218,7 @@
     .leftContainer {
         background-color: white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        height: 465px;
+        height: 475px;
         width: 47%;
         display: inline-block;
         border-radius: 4px;
@@ -222,7 +229,7 @@
     .rightContainer {
         background-color: white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        height: 465px;
+        height: 475px;
         width: 47%;
         display: inline-block;
         float: right;
@@ -247,11 +254,12 @@
         width: 150px;
         height: 150px;
         line-height: 140px;
+        margin-left: 130%;
     }
     .avatar {
         width: 150px;
         height: 150px;
         display: block;
-        margin-left: 165%;
+        margin-left: 130%;
     }
 </style>

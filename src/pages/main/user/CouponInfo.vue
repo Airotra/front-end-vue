@@ -4,7 +4,7 @@
             <div class="crumbs">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/main/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item :to="{ path: '/main/first' }">优惠券管理</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/main/user/couponInfo' }">优惠券管理</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
         </el-card>
@@ -25,12 +25,12 @@
                         <el-table-column
                                 prop="amount"
                                 label="优惠券金额"
-                                width="200">
+                                width="100">
                         </el-table-column>
                         <el-table-column
                                 prop="time"
                                 label="到期时间"
-                                width="260">
+                                width="200">
                         </el-table-column>
                     </el-table>
                 </el-aside>
@@ -49,7 +49,7 @@
                         <el-table-column
                                 prop="amount"
                                 label="优惠券金额"
-                                width="200">
+                                width="100">
                         </el-table-column>
                         <el-table-column
                                 prop="quantity"
@@ -58,7 +58,7 @@
                         <el-table-column
                                 prop="time"
                                 label="到期时间"
-                                width="300">
+                                width="200">
                         </el-table-column>
                         <el-table-column
                                 label="操作"

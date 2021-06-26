@@ -22,7 +22,7 @@
                     <el-link type="primary" href="/#/login">用户登录<i class="el-icon-caret-right"></i></el-link>
                 </div>
                 <div style="font-size: small; margin-left: 105px;margin-top: 30px">
-                    Copyright © 2021 SCUTeam8
+                    Copyright © 2021 SCUTeam08
                 </div>
             </el-aside>
 

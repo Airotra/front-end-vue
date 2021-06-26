@@ -3,53 +3,43 @@ export default {
     1: {
       main: [
         {
-          groupTitle: '分组1'
+          groupTitle: '首页'
         },
         {
           path: '/main/first',
           icon: 'suncaper-menu-unfold',
-          title: '一级菜单1'
+          title: '首页'
         },
-        {// syan
-          path: '/main/goods',
+        {
+          groupTitle: '商品'
+        },
+        {
+          path: '/main/goods/goods',
           icon: 'suncaper-menu-unfold',
-          title: '商品',
-          group: 'goods',
-          children: [
-            {
-              path: '/main/goods/goods',
-              icon: 'suncaper-menu-unfold',
-              title: '商品列表'
-            },
-            {
-              path: '/main/goodsManage/goodsManage',
-              icon: 'suncaper-menu-unfold',
-              title: '商品管理'
-            }
-          ]
+          title: '商品列表'
         },
-          {
-              path: '/main/PointShoppingMall',
-              icon: 'suncaper-menu-unfold',
-              title: '积分商城',
-              group: 'PointShoppingMall',
-              children: [
-                  {
-                      path: '/main/PointShoppingMall/Clothes',
-                      icon: 'suncaper-menu-unfold',
-                      title: '服装百货'
-                  },
-                  {
-                      path: '/main/PointShoppingMall/Mobile',
-                      icon: 'suncaper-menu-unfold',
-                      title: '数码电器'
-                  },
-                  {
-                      path: '/main/PointShoppingMall/Food',
-                      icon: 'suncaper-menu-unfold',
-                      title: '食品美妆'
-                  }
-              ]
+        {
+            path: '/main/PointShoppingMall',
+            icon: 'suncaper-menu-unfold',
+            title: '积分商城',
+            group: 'PointShoppingMall',
+            children: [
+                {
+                    path: '/main/PointShoppingMall/Clothes',
+                    icon: 'suncaper-menu-unfold',
+                    title: '服装百货'
+                },
+                {
+                    path: '/main/PointShoppingMall/Mobile',
+                    icon: 'suncaper-menu-unfold',
+                    title: '数码电器'
+                },
+                {
+                    path: '/main/PointShoppingMall/Food',
+                    icon: 'suncaper-menu-unfold',
+                    title: '食品美妆'
+                }
+            ]
           },
           {
               path: '/main/Trolley',
@@ -92,12 +82,20 @@ export default {
     2: {
         main: [
           {
-            groupTitle: '分组1'
+            groupTitle: '首页'
           },
           {
             path: '/main/first',
             icon: 'suncaper-menu-unfold',
-            title: '一级菜单1'
+            title: '首页'
+          },
+          {
+            groupTitle: '商品'
+          },
+          {
+            path: '/main/goodsManage/goodsManage',
+            icon: 'suncaper-menu-unfold',
+            title: '商品管理'
           },
           {
             groupTitle: '个人中心'
@@ -120,30 +118,20 @@ export default {
     3: {
       main: [
         {
-          groupTitle: '分组1'
+          groupTitle: '首页'
         },
         {
           path: '/main/first',
           icon: 'suncaper-menu-unfold',
-          title: '一级菜单1'
+          title: '首页'
         },
-        {// syan
-          path: '/main/goods',
+        {
+          groupTitle: '商品'
+        },
+        {
+          path: '/main/goods/goods',
           icon: 'suncaper-menu-unfold',
-          title: '商品',
-          group: 'goods',
-          children: [
-            {
-              path: '/main/goods/goods',
-              icon: 'suncaper-menu-unfold',
-              title: '商品列表'
-            },
-            {
-              path: '/main/goodsManage/goodsManage',
-              icon: 'suncaper-menu-unfold',
-              title: '商品管理'
-            }
-          ]
+          title: '商品列表'
         }
       ]
     }

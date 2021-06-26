@@ -76,6 +76,7 @@
     import userDetail from '../components/user/UserDetailDialog'
     import { _userInfo } from '@api/user'
     import {_userAddrInfo, _userInfoSave} from '../../../api/user'
+    import {_delPicture} from '../../../api/api'
 
     export default {
         name: 'UserInfo',
@@ -168,6 +169,12 @@
                 })
             },
             beforeAvatarUpload (file) {
+                if (this.avatar !== '') {
+                    _delPicture(this.avatar).then(res => {
+                        // console.info(res)
+                    })
+                }
+
                 const isJPG = file.type === 'image/jpeg'
                 const isLt2M = file.size / 1024 / 1024 < 2
 

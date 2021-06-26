@@ -17,9 +17,15 @@
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
                         <p style="margin: 4%; font-size: 1.1em;">个人基本信息</p>
                     </div>
-                    <div class="avatar">
-                        <el-avatar icon="el-icon-user-solid" :size="80" style="margin: 10px 40%;"></el-avatar>
-                    </div>
+                    <el-upload
+                            class="avatar-uploader"
+                            action="/api/file/upload"
+                            :show-file-list="false"
+                            :on-success="handleAvatarSuccess"
+                            :before-upload="beforeAvatarUpload">
+                        <el-avatar v-if="avatar" :src="url + avatar" class="avatar"></el-avatar>
+                        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                    </el-upload>
                     <div class="userInfo">
                         <div style="border-bottom: 1px solid rgb(240,240,240)">
                             <p style="margin-left: 5%">昵称： {{nickName}}</p>
@@ -61,7 +67,6 @@
                     </div>
                 </div>
             </div>
-
         </el-card>
     </div>
 </template>
@@ -70,7 +75,7 @@
     import {mapGetters} from 'vuex'
     import userDetail from '../components/user/UserDetailDialog'
     import { _userInfo } from '@api/user'
-    import {_userAddrInfo} from '../../../api/user'
+    import {_userAddrInfo, _userInfoSave} from '../../../api/user'
 
     export default {
         name: 'UserInfo',
@@ -79,6 +84,7 @@
         },
         data () {
             return {
+                url: 'api/file/picture?url=',
                 nickName: '',
                 phoneNumber: '',
                 avatar: '',
@@ -88,7 +94,8 @@
                     id: '',
                     nickName: '',
                     phoneNumber: '',
-                    password: ''
+                    password: '',
+                    avatar: ''
                 },
                 address: []
             }
@@ -133,6 +140,7 @@
                 this.user.nickName = this.nickName
                 this.user.phoneNumber = this.phoneNumber
                 this.user.password = this.password
+                this.user.avatar = this.avatar
             },
             getData () {
                 _userInfo(this.userId).then(res => {
@@ -142,6 +150,34 @@
                     this.point = res.data.point
                     this.password = res.data.password
                 })
+            },
+            handleAvatarSuccess (res, file) {
+                console.info(res)
+               this.avatar = res.url
+                console.info(this.avatar)
+                this.setUserData()
+                // console.info(this.user)
+                _userInfoSave(this.user).then(res => {
+                    if (res.status) {
+                        this.$message({
+                            message: '保存成功',
+                            type: 'success'
+                        })
+                        this.getData()
+                    }
+                })
+            },
+            beforeAvatarUpload (file) {
+                const isJPG = file.type === 'image/jpeg'
+                const isLt2M = file.size / 1024 / 1024 < 2
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!')
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!')
+                }
+                return isJPG && isLt2M
             }
         }
     }
@@ -168,7 +204,7 @@
     .leftContainer {
         background-color: white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        height: 430px;
+        height: 465px;
         width: 47%;
         display: inline-block;
         border-radius: 4px;
@@ -179,7 +215,7 @@
     .rightContainer {
         background-color: white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        height: 430px;
+        height: 465px;
         width: 47%;
         display: inline-block;
         float: right;
@@ -188,7 +224,27 @@
         top: -145px;
         right: 2%;
     }
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 150px;
+        height: 150px;
+        line-height: 140px;
+    }
     .avatar {
-        border-bottom: 1px solid rgb(240,240,240)
+        width: 150px;
+        height: 150px;
+        display: block;
+        margin-left: 165%;
     }
 </style>

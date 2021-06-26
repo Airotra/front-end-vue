@@ -11,19 +11,6 @@ export default {
           title: '一级菜单1'
         },
         {
-          path: '/main/second',
-          icon: 'suncaper-menu-unfold',
-          title: '一级菜单2',
-          group: 'second',
-          children: [
-            {
-              path: '/main/second/second',
-              icon: 'suncaper-menu-unfold',
-              title: '二级菜单'
-            }
-          ]
-        },
-        {
           groupTitle: '个人中心'
         },
         {
@@ -54,20 +41,20 @@ export default {
     2: {
         main: [
           {
+            groupTitle: '分组1'
+          },
+          {
+            path: '/main/first',
+            icon: 'suncaper-menu-unfold',
+            title: '一级菜单1'
+          },
+          {
             groupTitle: '个人中心'
           },
           {
-            path: '/main/admin',
+            path: '/main/admin/adminInfo',
             icon: 'suncaper-menu-unfold',
-            title: '个人信息',
-            group: 'admin',
-            children: [
-              {
-                path: '/main/admin/adminInfo',
-                icon: 'suncaper-menu-unfold',
-                title: '个人信息管理'
-              }
-            ]
+            title: '个人信息管理'
           },
           {
             groupTitle: '优惠券'
@@ -88,19 +75,6 @@ export default {
           path: '/main/first',
           icon: 'suncaper-menu-unfold',
           title: '一级菜单1'
-        },
-        {
-          path: '/main/second',
-          icon: 'suncaper-menu-unfold',
-          title: '一级菜单2',
-          group: 'second',
-          children: [
-            {
-              path: '/main/second/second',
-              icon: 'suncaper-menu-unfold',
-              title: '二级菜单'
-            }
-          ]
         },
         {// syan
           path: '/main/goods',

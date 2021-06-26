@@ -10,14 +10,16 @@
     </el-card>
     <el-card class="container">
       商品列表
-      <el-button type="text" class="button" @click="getGoods" >刷新商品</el-button>
+      <el-button type="text" class="button" @click="getGoods">刷新商品</el-button>
     </el-card>
-    <el-card class="container" >
+    <el-card class="container">
       <el-row>
-        <el-col :span="10"><el-input v-model="query.name" placeholder="搜索商品" size="small" @keyup.enter.native="getGoods"  ></el-input></el-col>
+        <el-col :span="10">
+          <el-input v-model="query.name" placeholder="搜索商品" size="small" @keyup.enter.native="getGoods"></el-input>
+        </el-col>
         <el-row style="float: right">
           <el-col :span="5" style="text-align: right">
-            <el-select v-model="query.category" placeholder="选择类别" size="small" @change="getGoods" >
+            <el-select v-model="query.category" placeholder="选择类别" size="small" @change="getGoods">
               <el-option
                   v-for="item in typeOptions"
                   :key="item.value"
@@ -35,7 +37,7 @@
                   :value="item.value">
               </el-option>
             </el-select>
-          </el-col >
+          </el-col>
           <el-col :span="5" style="text-align: right">
             <el-select v-model="query.PurchaseDesc" placeholder="按人气排序" size="small" @change="getGoods">
               <el-option
@@ -46,22 +48,25 @@
               </el-option>
             </el-select>
           </el-col>
-          <el-col :span="5" style="text-align: right"><el-button type="primary" icon="el-icon-search" size="small" @click="getGoods" >搜索</el-button></el-col>
+          <el-col :span="5" style="text-align: right">
+            <el-button type="primary" icon="el-icon-search" size="small" @click="getGoods">搜索</el-button>
+          </el-col>
         </el-row>
       </el-row>
     </el-card>
-    <el-row >
+    <el-row>
       <el-col :span="4" v-for="(o, index) in goodsList" :key="index" :offset="index > 0 ? 0.4 : 0">
         <el-card :body-style="{ padding: '10px'}" shadow="hover" class="card">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+          <el-image :src="o.picture?url + o.picture:defaultImg" class="image"></el-image>
           <div style="padding: 14px;">
-            <span>{{o.name}}</span>
+            <span>{{ o.name }}</span>
             <div class="bottom clearfix">
               <time class="time">{{ o.time }}上架</time>
-              <p>价格: ￥{{o.price}}</p>
-              <p>人气值: {{o.purchaseTimes}}</p>
-              <el-button type="text" class="button" @click="purchaseDialogVisible = true" >购买</el-button>
-              <el-button type="text" class="button2" @click="detailDialogVisible = true;openDetail(index)">详情</el-button>
+              <p>价格: ￥{{ o.price }}</p>
+              <p>人气值: {{ o.purchaseTimes }}</p>
+              <el-button type="text" class="button" @click="purchaseDialogVisible = true">购买</el-button>
+              <el-button type="text" class="button2" @click="detailDialogVisible = true;openDetail(index)">详情
+              </el-button>
               <el-dialog
                   title="商品详情"
                   :visible.sync="detailDialogVisible"
@@ -69,33 +74,34 @@
                   :before-close="handleClose">
                 <el-row :gutter="20">
                   <el-col :span="12">
-                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+                    <el-image :src="goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image2"></el-image>
                   </el-col>
                   <el-col :span="12">
-                    <p>商品名: {{goodsDetail.name}}</p>
-                    <p>价格: ￥{{goodsDetail.price}}</p>
-                    <p>人气值: {{goodsDetail.purchaseTimes}}</p>
-                    <p>描述: {{goodsDetail.description}}</p>
-                    <p v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{goodsDetail.sideDec1}} </p>
-                    <p v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{goodsDetail.sideDec2}} </p>
-                    <p v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{goodsDetail.sideDec3}} </p>
+                    <p>商品名: {{ goodsDetail.name }}</p>
+                    <p>价格: ￥{{ goodsDetail.price }}</p>
+                    <p>人气值: {{ goodsDetail.purchaseTimes }}</p>
+                    <p>描述: {{ goodsDetail.description }}</p>
+                    <p v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{ goodsDetail.sideDec1 }} </p>
+                    <p v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{ goodsDetail.sideDec2 }} </p>
+                    <p v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} </p>
                   </el-col>
                 </el-row>
 
                 <el-dialog
                     width="30%"
                     title="添加确认"
-                    center:true
-                    :visible.sync="innerVisible"
+                    :visible.sync="trolleyVisible"
                     append-to-body>
-                  <span>是否确认添加购物车？</span>
+                  <span>请选择添加购物车的数量:</span>
+                  <el-input-number v-model="purchaseDetail.goodsNumber" :min="1" :max="99"
+                                   label="描述文字"></el-input-number>
                   <span slot="footer" class="dialog-footer">
-                  <el-button type="primary" @click="innerVisible = false">确 定</el-button>
+                  <el-button type="primary" @click="addGoodsToTrolley">确 定</el-button>
                     <!--     这里插入添加购物车逻辑       -->
                  </span>
                 </el-dialog>
                 <span slot="footer" class="dialog-footer">
-                  <el-button @click="innerVisible = true">添加购物车</el-button>
+                  <el-button @click="trolleyVisible = true">添加购物车</el-button>
                   <el-button type="primary" @click="detailDialogVisible = false">确 定</el-button>
                  </span>
               </el-dialog>
@@ -108,7 +114,7 @@
                 <span slot="footer" class="dialog-footer">
                 <el-button @click="purchaseDialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="purchaseDialogVisible = false">确 定</el-button>
-                <!--      这里插入购买支付逻辑         -->
+                  <!--      这里插入购买支付逻辑         -->
                 </span>
               </el-dialog>
             </div>
@@ -129,7 +135,8 @@
 </template>
 
 <script>
-import {goodsPage} from '../../../../api/goods'
+import {goodsPage, addGoodsToTrolley, getTrolleyIdByUserId, getByFKs, updateTrolleyContainGoods} from '../../../../api/goods'
+import {mapGetters} from 'vuex'
 
 export default {
   name: 'GoodsList',
@@ -157,22 +164,72 @@ export default {
     },
     handleClose (done) {
       this.$confirm('确认关闭？')
-        .then(_ => {
-          done()
-        })
-        .catch(_ => {})
+          .then(_ => {
+            done()
+          })
+          .catch(_ => {
+          })
     },
     openDetail (index) {
       this.goodsDetail = this.goodsList[index]
+    },
+    addGoodsToTrolley () {
+      if (this.userType === 3) {
+        alert('请先登录！')
+        this.trolleyVisible = false
+        // 跳转登录页面
+      } else {
+        // console.info(this.userId)
+        getTrolleyIdByUserId(this.userId).then(res => {
+          // 获取本用户对应的购物车id
+          // console.info(res.data)
+          this.purchaseDetail.goodsId = this.goodsDetail.goodsId
+          this.purchaseDetail.goodsName = this.goodsDetail.name
+          this.purchaseDetail.goodsPicture = this.goodsDetail.picture
+          this.purchaseDetail.goodsPrice = this.goodsDetail.price
+          this.purchaseDetail.id = res.data
+          // 先判断是否已经添加过该商品
+          getByFKs(this.purchaseDetail).then(res2 => {
+            // console.info(res2)
+            if (res2.data === null) {
+              // alert('未添加')
+              addGoodsToTrolley(this.purchaseDetail).then(res3 => {
+                this.trollyVisible = false
+                alert('添加成功')
+                // console.info(res3)
+                this.trolleyVisible = false
+              })
+            } else {
+              // alert('已添加')
+              // 这里更新添加商品的数量，新的数量为已添加数量和本次添加数量之和
+              // console.info(res2.data.goodsNumber)
+              this.purchaseDetail.goodsNumber += res2.data.goodsNumber
+              // console.info(this.purchaseDetail.goodsNumber)
+              updateTrolleyContainGoods(this.purchaseDetail).then(res4 => {
+                // console.info(res4)
+                alert('物品数量更新成功')
+                this.trolleyVisible = false
+              })
+            }
+          })
+        })
+      }
     }
   },
   data () {
     return {
+      defaultImg: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      url: 'api/file/picture?url=',
       currentDate: new Date(),
       goodsList: [],
+      userInfo: {
+        id: this.userId,
+        name: 'null',
+        userType: this.userType
+      },
       detailDialogVisible: false,
       purchaseDialogVisible: false,
-      innerVisible: false,
+      trolleyVisible: false,
       query: {
         pageNo: 1,
         pageSize: 5,
@@ -187,6 +244,14 @@ export default {
         price: 'null',
         purchaseTimes: '0',
         description: 'null'
+      },
+      purchaseDetail: {
+        id: 'null',
+        goodsId: 'null',
+        goodsNumber: 1,
+        goodsName: 'null',
+        goodsPrice: 0,
+        goodsPicture: 'null'
       },
       typeOptions: [{
         value: '0',
@@ -216,6 +281,13 @@ export default {
         label: '人气降序'
       }]
     }
+  },
+  computed: {
+    ...mapGetters({
+      userType: 'user/getUserType',
+      userId: 'user/getUserId',
+      getSidebarList: 'sidebar/getSidebarList'
+    })
   }
 }
 </script>
@@ -235,13 +307,19 @@ export default {
   padding: 0;
   float: right;
 }
-.button2{
+
+.button2 {
   padding: 0;
   margin-right: 10px;
   float: right;
 }
 
 .image {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+.image2{
   width: 100%;
   display: block;
 }
@@ -255,12 +333,14 @@ export default {
 .clearfix:after {
   clear: both
 }
-.card{
+
+.card {
   width: 200px;
-  height: 350px;
+  height: 400px;
   margin: 10px;
 }
-.el-pagination{
+
+.el-pagination {
   text-align: center;
   margin-top: 20px;
 }

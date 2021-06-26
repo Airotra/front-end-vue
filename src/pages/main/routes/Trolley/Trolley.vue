@@ -78,6 +78,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import {trolleylist} from '@api/trolleylist'
 import {removegoods} from '@api/removegoods'
 import {goodsnumberChange} from '@api/goodsnumberChange'
@@ -92,10 +93,21 @@ export default {
     GoodsRemove,
     ConfirmSettlement
   },
+  computed: {
+    ...mapGetters({
+      userType: 'user/getUserType',
+      userId: 'user/getUserId',
+      getSidebarList: 'sidebar/getSidebarList'
+    })
+  },
   data () {
     return {
       TrolleyGoods: [],
       GoodsSelection: [],
+      address: '',
+      addressId: 0,
+      addresslistId: [],
+      addresslistdetail: [],
       query: {
         pageNo: 1,
         pageSize: 10,
@@ -152,7 +164,7 @@ export default {
     getTrolley () {
       this.$axios.get('/api/user/getTrolleyID', {params: {
         // 获取用户id，作为参数传入
-        id: 1
+        id: this.userId
       }}).then(res => {
         // 获取购物车id，作为参数传入
         this.query.id = res.data
@@ -166,7 +178,22 @@ export default {
     // 结算购物车内商品信息
     SettlePrice (GoodsSelection) {
       console.info(GoodsSelection)
-      this.$refs.confirmSettle.show(GoodsSelection)
+      this.$axios.get('/api/user/getAddr', {params: {
+          id: this.userId
+        }}).then(res => {
+        this.addresslistId = []
+        this.addresslistdetail = []
+        for (var index = 0; index < res.data.data.list.length; index++) {
+          this.address = res.data.data.list[index].nation + res.data.data.list[index].provice +
+                  res.data.data.list[index].city + res.data.data.list[index].district +
+                  res.data.data.list[index].addr
+          this.addressId = res.data.data.list[index].id
+          this.addresslistId.push(this.addressId)
+          this.addresslistdetail.push(this.address)
+        }
+        // 弹出结算对话框
+        this.$refs.confirmSettle.show(GoodsSelection, this.addresslistId, this.addresslistdetail)
+      })
     },
     // 页面大小改变
     handleSizeChange (val) {

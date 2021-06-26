@@ -27,12 +27,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('康师傅方便面一桶', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('康师傅方便面一桶', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box2" >
@@ -50,12 +46,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('酸奶一瓶', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('酸奶一瓶', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box3" >
@@ -73,12 +65,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('小袋原味花生', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('小袋原味花生', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box4" >
@@ -96,12 +84,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('保湿面膜', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('保湿面膜', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box5" >
@@ -119,12 +103,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('香皂一块', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('香皂一块', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
       </el-card>
@@ -148,12 +128,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">568积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('黑芝麻500g×2包', 568)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('黑芝麻500g×2包', 568)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box2" >
@@ -171,12 +147,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">416积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('饼干组合3袋', 416)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('饼干组合3袋', 416)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box3" >
@@ -194,12 +166,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">295积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('坚果麦片500g', 295)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('坚果麦片500g', 295)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box4" >
@@ -217,12 +185,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">328积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('洗护套装', 328)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('洗护套装', 328)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box5" >
@@ -240,12 +204,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">589积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('温泉卸妆水', 589)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('温泉卸妆水', 589)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
       </el-card>
@@ -269,12 +229,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">790积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('福临门软糯香米', 790)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('福临门软糯香米', 790)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box2" >
@@ -292,12 +248,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">295积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('鄱阳湖松花蛋', 295)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('鄱阳湖松花蛋', 295)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box3" >
@@ -315,12 +267,8 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">523积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('曼秀雷敦洁面乳', 523)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('曼秀雷敦洁面乳', 523)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box4" >
@@ -338,12 +286,8 @@
                   <el-tag style="margin-left: 35px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">625积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('珀莱雅保湿水', 625)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('珀莱雅保湿水', 625)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
           <div class="box5" >
@@ -361,24 +305,40 @@
                   <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">1400积分</el-tag>
               </div>
               <div>
-                  <router-link to='/main' >
-                      <el-button class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                  </router-link>
-                  <router-link to='/main' >
-                      <el-button class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
-                  </router-link>
+                  <el-button @click="show('小米电动牙刷', 1400)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                  <el-button @click="buy('小米电动牙刷', 1400)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
               </div>
           </div>
       </el-card>
+      <point-goods-buy ref="PointgoodsBuy"></point-goods-buy>
+      <point-goods-detail ref="PointgoodsDetail"></point-goods-detail>
   </div>
 </template>
 
 <script>
-
+import {mapGetters} from 'vuex'
+import PointGoodsBuy from '../../components/Trolley/PointGoodsBuy'
+import PointGoodsDetail from '../../components/Trolley/PointGoodsDetail'
 export default {
   name: 'second',
+  components: {
+        PointGoodsBuy,
+        PointGoodsDetail
+  },
+  computed: {
+        ...mapGetters({
+            userType: 'user/getUserType',
+            userId: 'user/getUserId',
+            getSidebarList: 'sidebar/getSidebarList'
+    })
+  },
   data () {
     return {
+      userPoint: 0,
+      address: '',
+      addressId: 0,
+      addresslistId: [],
+      addresslistdetail: [],
       Noodleimg: require('@/assets/images/noodle.png'),
       Yogurtimg: require('@/assets/images/yogurt.png'),
       Peanutimg: require('@/assets/images/peanut.png'),
@@ -396,14 +356,36 @@ export default {
       Brusherimg: require('@/assets/images/brusher.png')
     }
   },
-  methods: {
-    haha (key) {
-      alert(key)
-    },
-    handleClick () {
-
+    methods: {
+        show (name, point) {
+            // 弹出商品详情对话框
+            this.$refs.PointgoodsDetail.show(name, point)
+        },
+        buy (name, point) {
+            this.$axios.get('/api/user/getUserDetail', {params: {
+                    // 获取用户的详细信息，主要为用户积分点
+                    id: this.userId
+                }}).then(res => {
+                this.userPoint = res.data.data.point
+            })
+            this.$axios.get('/api/user/getAddr', {params: {
+                    id: this.userId
+                }}).then(res => {
+                this.addresslistId = []
+                this.addresslistdetail = []
+                for (var index = 0; index < res.data.data.list.length; index++) {
+                    this.address = res.data.data.list[index].nation + res.data.data.list[index].provice +
+                        res.data.data.list[index].city + res.data.data.list[index].district +
+                        res.data.data.list[index].addr
+                    this.addressId = res.data.data.list[index].id
+                    this.addresslistId.push(this.addressId)
+                    this.addresslistdetail.push(this.address)
+                }
+                // 弹出结算对话框
+                this.$refs.PointgoodsBuy.show(name, point, this.userPoint, this.addresslistId, this.addresslistdetail)
+            })
+        }
     }
-  }
 }
 </script>
 

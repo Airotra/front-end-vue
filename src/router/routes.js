@@ -82,6 +82,14 @@ const mainPage = [
             )
       },
       {
+        path: 'order/order',
+        name: 'order',
+        component: () =>
+            import(
+                '../pages/main/routes/order/Order'
+                )
+      },
+      {
         path: 'second',
         name: 'second',
         component: () =>

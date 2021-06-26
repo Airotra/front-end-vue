@@ -91,13 +91,17 @@
           <el-image :src="goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image2"></el-image>
         </el-col>
         <el-col :span="12">
-          <p>商品名: {{ goodsDetail.name }}</p>
-          <p>价格: ￥{{ goodsDetail.price }}</p>
-          <p>人气值: {{ goodsDetail.purchaseTimes }}</p>
-          <p>描述: {{ goodsDetail.description }}</p>
-          <p v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{ goodsDetail.sideDec1 }} </p>
-          <p v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{ goodsDetail.sideDec2 }} </p>
-          <p v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} </p>
+          <span>商品名: {{ goodsDetail.name }}</span>
+          <el-divider></el-divider>
+          <span>价格: ￥{{ goodsDetail.price }}</span>
+          <el-divider></el-divider>
+          <span>人气值: {{ goodsDetail.purchaseTimes }}</span>
+          <el-divider></el-divider>
+          <span>描述: {{ goodsDetail.description }}</span>
+          <el-divider></el-divider>
+          <span v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{ goodsDetail.sideDec1 }} <el-divider></el-divider></span>
+          <span v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{ goodsDetail.sideDec2 }} <el-divider></el-divider></span>
+          <span v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} <el-divider></el-divider></span>
         </el-col>
       </el-row>
 

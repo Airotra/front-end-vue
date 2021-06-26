@@ -41,6 +41,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'second',
   data () {
@@ -66,7 +67,6 @@ export default {
       alert(key)
     },
     handleClick () {
-
     }
   }
 }

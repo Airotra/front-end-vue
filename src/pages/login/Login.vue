@@ -18,7 +18,7 @@
                 </div>
                 <el-button type="primary" style="position: relative; left: 300px; top: 30px;" v-on:click="userLogin">登录</el-button>
                 <div style="position: relative; left: 40%;bottom: -55px; width: fit-content;">
-                    <el-link type="primary" href="/#/main/first" @click.native="refresh"><i class="el-icon-user"></i>游客登录</el-link>
+                    <el-link type="primary" @click.native="touristLogin"><i class="el-icon-user"></i>游客登录</el-link>
                 </div>
                 <div class="register" style="margin-top: 77px; margin-left: 115px;">
                     <p style="display: inline;">还没有账号？</p>
@@ -41,6 +41,7 @@
 <script>
 
 import {_userLogin} from '../../api/user'
+import store from '../../store/'
 
 export default {
     name: 'login',
@@ -72,8 +73,9 @@ export default {
                             }
                         })
                     } else {
-                        this.$router.push('/main/first')
-                        this.$router.go(0)
+                        store.dispatch('user/fetchUserInfo').then(res => {
+                            this.$router.push('/main/first')
+                        })
                     }
                 })
             } else {
@@ -88,9 +90,10 @@ export default {
                 })
             }
         },
-        refresh () {
-            this.$router.push('/main/first')
-            this.$router.go(0)
+        touristLogin () {
+            store.dispatch('user/fetchUserInfo').then(res => {
+                this.$router.push('/main/first')
+            })
         }
     }
 }

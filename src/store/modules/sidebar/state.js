@@ -57,6 +57,11 @@ export default {
               title: '购物车'
           },
         {
+          path: '/main/order/order',
+          icon: 'suncaper-menu-unfold',
+          title: '订单管理'
+        },
+        {
           groupTitle: '个人中心'
         },
         {

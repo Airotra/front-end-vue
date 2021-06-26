@@ -67,56 +67,6 @@
               <el-button type="text" class="button" @click="purchaseDialogVisible = true">购买</el-button>
               <el-button type="text" class="button2" @click="detailDialogVisible = true;openDetail(index)">详情
               </el-button>
-              <el-dialog
-                  title="商品详情"
-                  :visible.sync="detailDialogVisible"
-                  width="50%"
-                  :before-close="handleClose">
-                <el-row :gutter="20">
-                  <el-col :span="12">
-                    <el-image :src="goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image2"></el-image>
-                  </el-col>
-                  <el-col :span="12">
-                    <p>商品名: {{ goodsDetail.name }}</p>
-                    <p>价格: ￥{{ goodsDetail.price }}</p>
-                    <p>人气值: {{ goodsDetail.purchaseTimes }}</p>
-                    <p>描述: {{ goodsDetail.description }}</p>
-                    <p v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{ goodsDetail.sideDec1 }} </p>
-                    <p v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{ goodsDetail.sideDec2 }} </p>
-                    <p v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} </p>
-                  </el-col>
-                </el-row>
-
-                <el-dialog
-                    width="30%"
-                    title="添加确认"
-                    :visible.sync="trolleyVisible"
-                    append-to-body>
-                  <span>请选择添加购物车的数量:</span>
-                  <el-input-number v-model="purchaseDetail.goodsNumber" :min="1" :max="99"
-                                   label="描述文字"></el-input-number>
-                  <span slot="footer" class="dialog-footer">
-                  <el-button type="primary" @click="addGoodsToTrolley">确 定</el-button>
-                    <!--     这里插入添加购物车逻辑       -->
-                 </span>
-                </el-dialog>
-                <span slot="footer" class="dialog-footer">
-                  <el-button @click="trolleyVisible = true">添加购物车</el-button>
-                  <el-button type="primary" @click="detailDialogVisible = false">确 定</el-button>
-                 </span>
-              </el-dialog>
-              <el-dialog
-                  title="提示"
-                  :visible.sync="purchaseDialogVisible"
-                  width="30%"
-                  :before-close="handleClose">
-                <span>确认购买吗？</span>
-                <span slot="footer" class="dialog-footer">
-                <el-button @click="purchaseDialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="purchaseDialogVisible = false">确 定</el-button>
-                  <!--      这里插入购买支付逻辑         -->
-                </span>
-              </el-dialog>
             </div>
           </div>
         </el-card>
@@ -131,6 +81,56 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="this.query.total">
     </el-pagination>
+    <el-dialog
+        title="商品详情"
+        :visible.sync="detailDialogVisible"
+        width="50%"
+        :before-close="handleClose">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-image :src="goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image2"></el-image>
+        </el-col>
+        <el-col :span="12">
+          <p>商品名: {{ goodsDetail.name }}</p>
+          <p>价格: ￥{{ goodsDetail.price }}</p>
+          <p>人气值: {{ goodsDetail.purchaseTimes }}</p>
+          <p>描述: {{ goodsDetail.description }}</p>
+          <p v-if="goodsDetail.sideDec1 !== null&&goodsDetail.sideDec1">额外描述1: {{ goodsDetail.sideDec1 }} </p>
+          <p v-if="goodsDetail.sideDec2 !== null&&goodsDetail.sideDec2">额外描述2: {{ goodsDetail.sideDec2 }} </p>
+          <p v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} </p>
+        </el-col>
+      </el-row>
+
+      <el-dialog
+          width="30%"
+          title="添加确认"
+          :visible.sync="trolleyVisible"
+          append-to-body>
+        <span>请选择添加购物车的数量:</span>
+        <el-input-number v-model="purchaseDetail.goodsNumber" :min="1" :max="99"
+                         label="描述文字"></el-input-number>
+        <span slot="footer" class="dialog-footer">
+                  <el-button type="primary" @click="addGoodsToTrolley">确 定</el-button>
+          <!--     这里插入添加购物车逻辑       -->
+                 </span>
+      </el-dialog>
+      <span slot="footer" class="dialog-footer">
+                  <el-button @click="trolleyVisible = true">添加购物车</el-button>
+                  <el-button type="primary" @click="detailDialogVisible = false">确 定</el-button>
+                 </span>
+    </el-dialog>
+    <el-dialog
+        title="提示"
+        :visible.sync="purchaseDialogVisible"
+        width="30%"
+        :before-close="handleClose">
+      <span>确认购买吗？</span>
+      <span slot="footer" class="dialog-footer">
+                <el-button @click="purchaseDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="purchaseDialogVisible = false">确 定</el-button>
+        <!--      这里插入购买支付逻辑         -->
+                </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -150,15 +150,15 @@ export default {
         this.goodsList = result.data.records
         this.query.total = result.data.total
       })
-      console.info(this.query.category)
+      // console.info(this.query.category)
     },
     handleSizeChange (val) {
-      console.log(`每页 ${val} 条`)
+      // console.log(`每页 ${val} 条`)
       this.query.pageSize = val
       this.getGoods()
     },
     handleCurrentChange (val) {
-      console.log(`当前页: ${val}`)
+      // console.log(`当前页: ${val}`)
       this.query.pageNo = val
       this.getGoods()
     },
@@ -175,7 +175,10 @@ export default {
     },
     addGoodsToTrolley () {
       if (this.userType === 3) {
-        alert('请先登录！')
+        this.$message({
+          message: '请先登录!',
+          type: 'warning'
+        })
         this.trolleyVisible = false
         // 跳转登录页面
       } else {
@@ -195,7 +198,10 @@ export default {
               // alert('未添加')
               addGoodsToTrolley(this.purchaseDetail).then(res3 => {
                 this.trollyVisible = false
-                alert('添加成功')
+                this.$message({
+                  message: '已添加至购物车',
+                  type: 'success'
+                })
                 // console.info(res3)
                 this.trolleyVisible = false
               })
@@ -207,7 +213,10 @@ export default {
               // console.info(this.purchaseDetail.goodsNumber)
               updateTrolleyContainGoods(this.purchaseDetail).then(res4 => {
                 // console.info(res4)
-                alert('物品数量更新成功')
+                this.$message({
+                  message: '物品数量更新成功',
+                  type: 'success'
+                })
                 this.trolleyVisible = false
               })
             }

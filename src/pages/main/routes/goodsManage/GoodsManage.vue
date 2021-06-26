@@ -82,7 +82,7 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image3">
         </el-col>
         <el-col :span="12">
           <p>商品名: {{goodsDetail.name}}</p>
@@ -107,7 +107,7 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image"></el-image>
+          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image3"></el-image>
           <el-upload
               class="upload-demo"
               action="/api/file/upload"
@@ -172,7 +172,7 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image"></el-image>
+          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image3"></el-image>
           <el-upload
               class="upload-demo"
               action="/api/file/upload"
@@ -252,11 +252,11 @@ export default {
   methods: {
     getGoods () {
       goodsPage(this.query).then(result => {
-        console.info(result.data)
+        // console.info(result.data)
         this.goodsList = result.data.records
         this.query.total = result.data.total
       })
-      console.info(this.query.category)
+      // console.info(this.query.category)
     },
     handleSizeChange (val) {
       // console.log(`每页 ${val} 条`)
@@ -316,7 +316,10 @@ export default {
           // console.info(this.goodsDetail)
           updateGoodsById(this.goodsDetail.goodsId, this.goodsDetail).then(res => {
             // console.log(res)
-            alert('修改成功！')
+            this.$message({
+              message: '修改成功！',
+              type: 'success'
+            })
             this.getGoods()
           })
         } else {
@@ -361,7 +364,10 @@ export default {
           this.goodsDeleteDTO.ids = JSON.parse(JSON.stringify(this.goodsDeleteDTO.ids))
           deleteGoodsByList(this.goodsDeleteDTO).then(result => {
             // console.info(result)
-            alert('删除成功！')
+            this.$message({
+              message: '删除成功！',
+              type: 'success'
+            })
             this.getGoods()
           })
         })
@@ -375,7 +381,10 @@ export default {
           // tianjia
           this.goodsDetail.goodsId = null
           createGoodsApi(this.goodsDetail).then(result => {
-            alert('创建成功')
+            this.$message({
+              message: '创建成功！',
+              type: 'success'
+            })
             this.getGoods()
           })
         } else {
@@ -509,9 +518,8 @@ export default {
   text-align: center;
   margin-top: 20px;
 }
-.image {
+.image3 {
   width: 100%;
-  height: fit-content;
   display: block;
 }
 

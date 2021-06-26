@@ -107,9 +107,20 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          <el-button type="info" @click="changeGoodsImg" icon="el-icon-picture-outline" size="small"
-          style="margin-top: 10px;margin-left: 115px">更改图片</el-button>
+          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image"></el-image>
+          <el-upload
+              class="upload-demo"
+              action="/api/file/upload"
+              :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :on-success="handleUploadSuccess"
+              :before-remove="beforeRemove"
+              multiple
+              :limit="1"
+              :on-exceed="handleExceed"
+              :file-list="fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
         </el-col>
         <el-col :span="12">
           <el-form :model="goodsDetail" :rules="rules" ref="goodsForm" label-width="100px" class="demo-ruleForm">
@@ -161,10 +172,20 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <!--  默认图片   -->
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          <el-button type="info" @click="changeGoodsImg" icon="el-icon-picture-outline" size="small"
-                     style="margin-top: 10px;margin-left: 115px">上传图片</el-button>
+          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image"></el-image>
+          <el-upload
+              class="upload-demo"
+              action="/api/file/upload"
+              :on-preview="handlePreview"
+              :on-remove="handleRemove"
+              :on-success="handleUploadSuccess"
+              :before-remove="beforeRemove"
+              multiple
+              :limit="1"
+              :on-exceed="handleExceed"
+              :file-list="fileList">
+            <el-button size="small" type="primary">点击上传</el-button>
+          </el-upload>
         </el-col>
         <el-col :span="12">
           <el-form :model="goodsDetail" :rules="rules" ref="createGoodsForm" label-width="100px" class="demo-ruleForm">
@@ -352,6 +373,7 @@ export default {
           this.createDialogVisible = false
           // console.info(this.goodsDetail)
           // tianjia
+          this.goodsDetail.goodsId = null
           createGoodsApi(this.goodsDetail).then(result => {
             alert('创建成功')
             this.getGoods()
@@ -368,7 +390,24 @@ export default {
     cancelCreateGoods () {
       this.createDialogVisible = false
       this.getGoods()
+    },
+    handleRemove (file, fileList) {
+      // console.log(file, fileList)
+    },
+    handlePreview (file) {
+      // console.log(file)
+    },
+    handleExceed (files, fileList) {
+      this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove (file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
+    },
+    handleUploadSuccess (res) {
+      this.goodsDetail.picture = res.url
+      // console.info(this.url + this.goodsDetail.picture)
     }
+
   },
   data () {
     let priceValidator = (rule, value, callback) => { // 正数保留两位小数
@@ -396,6 +435,9 @@ export default {
       }
     }
     return {
+      fileList: [],
+      defaultImg: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      url: 'api/file/picture?url=',
       detailDialogVisible: false,
       purchaseDialogVisible: false,
       editDialogVisible: false,
@@ -417,7 +459,7 @@ export default {
         purchaseTimes: '0',
         description: 'null',
         category: 1,
-        picture: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png'
+        picture: ''
       },
       deleteButtonDisabled: true,
       goodsDeleteDTO: {
@@ -469,6 +511,7 @@ export default {
 }
 .image {
   width: 100%;
+  height: fit-content;
   display: block;
 }
 

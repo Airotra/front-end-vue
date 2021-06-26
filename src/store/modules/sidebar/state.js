@@ -10,6 +10,24 @@ export default {
           icon: 'suncaper-menu-unfold',
           title: '一级菜单1'
         },
+        {// syan
+          path: '/main/goods',
+          icon: 'suncaper-menu-unfold',
+          title: '商品',
+          group: 'goods',
+          children: [
+            {
+              path: '/main/goods/goods',
+              icon: 'suncaper-menu-unfold',
+              title: '商品列表'
+            },
+            {
+              path: '/main/goodsManage/goodsManage',
+              icon: 'suncaper-menu-unfold',
+              title: '商品管理'
+            }
+          ]
+        },
           {
               path: '/main/PointShoppingMall',
               icon: 'suncaper-menu-unfold',

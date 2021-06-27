@@ -4,8 +4,8 @@
             <el-aside class="left" style="width: 400px">
                 <img src="static/images/picture/shop.png" style="transform:scale(0.5)">
                 <h2 style="left: 50px;top: -20px;margin: 0;position: relative;font-weight: lighter; width: fit-content;">欢迎使用</h2>
-                <h2 style="left: 150px;top: -10px;margin: 0;position: relative;font-weight: normal; width: fit-content;">XX购物商城</h2>
-                <p style="font-weight: lighter; color: gray;font-size: small; ; margin-left: 50px;margin-top: 30px">XX购物商城为您提供全网最佳网上购物体验</p>
+                <h2 style="left: 150px;top: -10px;margin: 0;position: relative;font-weight: normal; width: fit-content;">综合购物商城</h2>
+                <p style="font-weight: lighter; color: gray;font-size: small; ; margin-left: 50px;margin-top: 30px">综合购物商城为您提供全网最佳网上购物体验</p>
                 <div class="input" style="width: 80%; position: relative; margin-left: 50px;margin-top: 30px">
                     <p style="margin-bottom: 10px">账号</p>
                     <el-input
@@ -25,7 +25,7 @@
                     <el-link type="primary" href="/#/register">去注册<i class="el-icon-caret-right"></i></el-link>
                 </div>
                 <div style="font-size: small; margin-left: 105px;margin-top: 30px">
-                    Copyright © 2021 SCUTeam8
+                    Copyright © 2021 SCUTeam08
                 </div>
                 <el-link type="primary" href="/#/adminLogin" style="position: relative; left: 75%;bottom: -20px;">管理员登录<i class="el-icon-s-custom"></i></el-link>
             </el-aside>

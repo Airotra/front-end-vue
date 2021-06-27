@@ -4,7 +4,7 @@
             <div class="crumbs">
                 <el-breadcrumb separator="/">
                     <el-breadcrumb-item :to="{ path: '/main/' }">首页</el-breadcrumb-item>
-                    <el-breadcrumb-item :to="{ path: '/main/first' }">个人信息查看</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{ path: '/main/admin/adminInfo' }">个人信息管理</el-breadcrumb-item>
                 </el-breadcrumb>
             </div>
         </el-card>
@@ -18,7 +18,7 @@
                         <p style="margin: 4%; font-size: 1.1em;">个人基本信息</p>
                     </div>
                     <div class="avatar">
-                        <el-avatar icon="el-icon-user-solid" :size="80" style="margin: 10px 40%;"></el-avatar>
+                        <el-avatar src="static/images/picture/admin-o.jpg" :size="80" style="margin: 10px 40%;"></el-avatar>
                     </div>
                     <div class="userInfo">
                         <div style="border-bottom: 1px solid rgb(240,240,240)">
@@ -125,7 +125,7 @@
     .leftContainer {
         background-color: white;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        height: 430px;
+        height: 370px;
         width: 47%;
         display: inline-block;
         border-radius: 4px;

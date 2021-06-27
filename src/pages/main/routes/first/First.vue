@@ -4,70 +4,150 @@
       <div class="crumbs">
         <el-breadcrumb separator="/">
           <el-breadcrumb-item :to="{ path: '/main/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/main/first' }">一级菜单1</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/main/first' }">首页</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
     </el-card>
-    <el-card class="container">
-      <el-tabs v-model="activeName"
-               @tab-click="handleClick">
-        <el-tab-pane v-for="(item,index) in schoolList"
-                     :key="index"
-                     :label="item.name"
-                     :name="item.id.toString()"
-                     style="margin:0px">
-          <el-row style="border-bottom:1px solid black">
-            <el-col :span="12" style="border-right:1px solid black">
-              <el-row>
-                <p style="border-left:5px solid blue;padding-left:5px;font-size:20px">状态类型</p>
-              </el-row>
-              <el-row>
-                <el-col style="margin-top:20px">正常打卡时间段：</el-col>
-                <el-col style="margin-top:20px">晚归打卡时间段：</el-col>
-              </el-row>
-            </el-col>
-            <el-col :span="12" style="padding-left:30px">
-              <p style="border-left:5px solid blue;padding-left:5px;font-size:20px">系统规则说明</p>
-              <p style="padding-left:5px">学生当天有考勤：超过当天24：00打卡的学生自动视为(未归且缺卡)；
-                若学生第二天有/无考勤，则24：00至8：00学生打卡状态为(未归)，过8：00之后学生
-                打卡状态为（未到时间），直至正常打卡时间段开始；</p>
-            </el-col>
-
-          </el-row>
-        </el-tab-pane>
-      </el-tabs>
-    </el-card>
+    <div id="wrapper">
+      <h1>综合网上购物商城</h1>
+      <h2>Comprehensive online mall</h2>
+      <br>
+      <p>JAVA方向SCU-A-08作品</p>
+      <br>
+      <p style="font-size: small">Copyright © 2021 SCUTeam08</p>
+    </div>
+    <canvas width="1920" height="949"></canvas>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'second',
+  mounted () {
+    this.init()
+  },
   data () {
     return {
-      activeName: '1',
-      schoolList: [
-        {
-          name: 'A学院',
-          id: 0
-        },
-        {
-          name: 'B学院',
-          id: 1
-        }, {
-          name: 'C学院',
-          id: 2
-        }
-      ]
+      canvas: '',
+      ctx: ''
     }
   },
   methods: {
-    haha (key) {
-      alert(key)
-    },
-    handleClick () {
+    init () {
+      document.addEventListener('touchmove', function (e) {
+        e.preventDefault()
+      })
+      /* eslint-disable */
+      var c = document.getElementsByTagName('canvas')[0],
+              x = c.getContext('2d'),
+              pr = window.devicePixelRatio || 1,
+              w = window.innerWidth,
+              h = window.innerHeight,
+              f = 90,
+              q,
+              m = Math,
+              r = 0,
+              u = m.PI * 2,
+              v = m.cos,
+              z = m.random
+      c.width = w * pr
+      c.height = h * pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+      function i () {
+        x.clearRect(0, 0, w, h)
+        q = [{x: 0, y: h * 0.7 + f}, {x: 0, y: h * 0.7 - f}]
+        while (q[1].x < w + f) d(q[0], q[1])
+      }
+      function d (i, j) {
+        x.beginPath()
+        x.moveTo(i.x, i.y)
+        x.lineTo(j.x, j.y)
+        var k = j.x + (z() * 2 - 0.25) * f,
+                n = y(j.y)
+        x.lineTo(k, n)
+        x.closePath()
+        r -= u / -50
+        x.fillStyle = '#' + (v(r) * 127 + 128 << 16 | v(r + u / 3) * 127 + 128 << 8 | v(r + u / 3 * 2) * 127 + 128).toString(16)
+        x.fill()
+        q[0] = q[1]
+        q[1] = {x: k, y: n}
+      }
+      function y (p) {
+        var t = p + (z() * 2 - 1.1) * f
+        return (t > h || t < 0) ? y(p) : t
+      }
+
+      document.onclick = i
+      document.ontouchstart = i
+      i()
     }
   }
 }
 </script>
+<style scoped>
+  html, body {
+    overflow: hidden;
+    margin: 0;
+  }
+  body {
+    font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+    color: #333;
+  }
+  #wrapper {
+    position: absolute;
+    left: 0;
+    width: 320px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    margin-left: -160px;
+    margin-top: -160px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  h1 {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 9px;
+    text-transform: uppercase;
+    margin: 12px 0;
+    left: 4px;
+  }
+  h2 {
+    color: #999;
+    font-weight: normal;
+    font-size: 15px;
+    letter-spacing: .12em;
+    margin-bottom: 30px;
+    left: 3px;
+  }
+  h1, h2 {
+    position: relative;
+  }
+  p {
+    font-size: 14px;
+    line-height: 2em;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  a {
+    color: #999;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  a:hover {
+    color: #f33;
+  }
+</style>

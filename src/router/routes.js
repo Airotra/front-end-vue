@@ -155,11 +155,11 @@ const mainPage = [
                 )
       },
       {
-        path: 'commentManage/commentManage',
-        name: 'commentManage',
+        path: 'admin/adminOrderManage',
+        name: 'adminOrderManage',
         component: () =>
             import(
-                /* webpackChunkName: "Goods" */ '../pages/main/routes/commentManage/CommentManage'
+                /* webpackChunkName: "First" */ '../pages/main/admin/adminOrderManage'
                 )
       }
     ]

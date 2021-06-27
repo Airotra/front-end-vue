@@ -153,6 +153,14 @@ const mainPage = [
             import(
                 /* webpackChunkName: "Goods" */ '../pages/main/routes/goodsManage/GoodsManage'
                 )
+      },
+      {
+        path: 'admin/adminOrderManage',
+        name: 'adminOrderManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "First" */ '../pages/main/admin/adminOrderManage'
+                )
       }
     ]
   }

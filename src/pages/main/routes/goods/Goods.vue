@@ -56,7 +56,7 @@
     </el-card>
     <el-row>
       <el-col :span="4" v-for="(o, index) in goodsList" :key="index" :offset="index > 0 ? 0.4 : 0">
-        <el-card :body-style="{ padding: '10px'}" shadow="hover" class="card">
+        <el-card :body-style="{ padding: '1px'}" shadow="hover" class="card">
           <el-image :src="o.picture?url + o.picture:defaultImg" class="image"></el-image>
           <div style="padding: 14px;">
             <span>{{ o.name }}</span>
@@ -85,6 +85,7 @@
         title="商品详情"
         :visible.sync="detailDialogVisible"
         width="50%"
+        style="background-color: #BDBDBD"
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
@@ -104,7 +105,57 @@
           <span v-if="goodsDetail.sideDec3 !== null&&goodsDetail.sideDec3">额外描述3: {{ goodsDetail.sideDec3 }} <el-divider></el-divider></span>
         </el-col>
       </el-row>
-
+      <!--   评论   -->
+      <el-card class="box-card" shadow="hover" >
+        <div slot="header" class="clearfix">
+          <span style="margin-right: 39%">精选评论</span>
+          <el-select v-model="commentListDTO.commentClass" placeholder="按评分分类" size="small" @change="getComment">
+            <el-option
+                v-for="item in commentClassOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+          <el-select v-model="commentListDTO.timeDesc" placeholder="按时间筛选" size="small" @change="getComment">
+            <el-option
+                v-for="item in commentTimeDescOptions"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+        <div v-for="(o,index) in commentList" :key="index" class="text item">
+          <el-row>
+            <el-row>
+              <el-col :span="1"><el-avatar size="small" :src="o.user.avatar?url+o.user.avatar:circleUrl"></el-avatar></el-col>
+              <el-col :span="10" style="font-size: larger">{{o.user.nickName}}</el-col>
+              <el-col :span="5">
+                <el-rate
+                    v-model="o.commentClass"
+                    disabled
+                    text-color="#ff9900">
+                </el-rate>
+              </el-col>
+              <el-col :span="5" style="font-size: 12px;color: gray;float: right">{{o.commentTime}}</el-col>
+            </el-row>
+            <el-col :span="24">
+              <el-divider direction="vertical"></el-divider>
+              <el-card style="width: 100%">{{ o.comment }}</el-card>
+            </el-col>
+          </el-row>
+        </div>
+        <el-pagination
+            @size-change="handleCommentSizeChange"
+            @current-change="handleCommentCurrentChange"
+            :current-page="this.commentListDTO.pageNo"
+            :page-sizes="[5, 10, 20, 50]"
+            :page-size="this.commentListDTO.pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="this.commentListDTO.total">
+        </el-pagination>
+      </el-card>
       <el-dialog
           width="30%"
           title="添加确认"
@@ -139,7 +190,7 @@
 </template>
 
 <script>
-import {goodsPage, addGoodsToTrolley, getTrolleyIdByUserId, getByFKs, updateTrolleyContainGoods} from '../../../../api/goods'
+import {goodsPage, addGoodsToTrolley, getTrolleyIdByUserId, getByFKs, updateTrolleyContainGoods, getCommentList} from '../../../../api/goods'
 import {mapGetters} from 'vuex'
 
 export default {
@@ -156,15 +207,31 @@ export default {
       })
       // console.info(this.query.category)
     },
+    getComment () {
+      this.commentListDTO.goodsId = this.goodsDetail.goodsId
+      getCommentList(this.commentListDTO).then(res => {
+        console.info(res)
+        this.commentList = res.data.records
+        this.commentListDTO.total = res.data.total
+      })
+    },
     handleSizeChange (val) {
       // console.log(`每页 ${val} 条`)
       this.query.pageSize = val
       this.getGoods()
     },
+    handleCommentSizeChange (val) {
+      this.commentListDTO.pageSize = val
+      this.getComment()
+    },
     handleCurrentChange (val) {
       // console.log(`当前页: ${val}`)
       this.query.pageNo = val
       this.getGoods()
+    },
+    handleCommentCurrentChange (val) {
+      this.commentListDTO.pageNo = val
+      this.getComment()
     },
     handleClose (done) {
       this.$confirm('确认关闭？')
@@ -176,6 +243,7 @@ export default {
     },
     openDetail (index) {
       this.goodsDetail = this.goodsList[index]
+      this.getComment()
     },
     addGoodsToTrolley () {
       if (this.userType === 3) {
@@ -231,6 +299,7 @@ export default {
   },
   data () {
     return {
+      circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       defaultImg: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
       url: 'api/file/picture?url=',
       currentDate: new Date(),
@@ -243,6 +312,15 @@ export default {
       detailDialogVisible: false,
       purchaseDialogVisible: false,
       trolleyVisible: false,
+      commentList: [],
+      commentListDTO: {
+        goodsId: 2,
+        commentClass: '0',
+        pageNo: 1,
+        pageSize: 5,
+        total: 0,
+        timeDesc: false
+      },
       query: {
         pageNo: 1,
         pageSize: 5,
@@ -266,6 +344,8 @@ export default {
         goodsPrice: 0,
         goodsPicture: 'null'
       },
+      userCommentDetail: {
+      },
       typeOptions: [{
         value: '0',
         label: '所有商品'
@@ -278,6 +358,25 @@ export default {
       }, {
         value: '3',
         label: '食品'
+      }],
+      commentClassOptions: [{
+        value: '5',
+        label: '五星好评'
+      }, {
+        value: '4',
+        label: '四星好评'
+      }, {
+        value: '3',
+        label: '三星中评'
+      }, {
+        value: '2',
+        label: '两星差评'
+      }, {
+        value: '1',
+        label: '一星差评'
+      }, {
+        value: '0',
+        label: '所有评论'
       }],
       priceDescOptions: [{
         value: false,
@@ -292,6 +391,13 @@ export default {
       }, {
         value: true,
         label: '人气降序'
+      }],
+      commentTimeDescOptions: [{
+        value: false,
+        label: '时间升序'
+      }, {
+        value: true,
+        label: '时间降序'
       }]
     }
   },
@@ -356,5 +462,26 @@ export default {
 .el-pagination {
   text-align: center;
   margin-top: 20px;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+.clearfix:after {
+  clear: both
+}
+
+.box-card {
+  width: 100%;
 }
 </style>

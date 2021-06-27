@@ -25,6 +25,11 @@ export default {
               path: '/main/goodsManage/goodsManage',
               icon: 'suncaper-menu-unfold',
               title: '商品管理'
+            },
+            {
+              path: '/main/commentManage/commentManage',
+              icon: 'suncaper-menu-unfold',
+              title: '评论管理'
             }
           ]
         },

@@ -153,6 +153,14 @@ const mainPage = [
             import(
                 /* webpackChunkName: "Goods" */ '../pages/main/routes/goodsManage/GoodsManage'
                 )
+      },
+      {
+        path: 'commentManage/commentManage',
+        name: 'commentManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "Goods" */ '../pages/main/routes/commentManage/CommentManage'
+                )
       }
     ]
   }

@@ -151,7 +151,9 @@
                 this.user.avatar = this.avatar
             },
             getData () {
+                console.info(this.userId)
                 _userInfo(this.userId).then(res => {
+                    // console.info(res)
                     this.nickName = res.data.nickName
                     this.phoneNumber = res.data.phoneNumber
                     this.avatar = res.data.avatar

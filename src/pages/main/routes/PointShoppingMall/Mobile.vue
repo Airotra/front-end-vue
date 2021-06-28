@@ -16,95 +16,95 @@
         <el-card class="container">
             <div class="box1">
                 <div>
-                    <span style="margin-left: 10px; font-size: 15px;color: #797979;">康师傅方便面一桶</span>
+                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">简易手机壳款式1</span>
                     <div class="demo-image">
                         <div class="block" >
                             <el-image
                                     style="width: 130px; height: 130px"
-                                    :src="Noodleimg"></el-image>
+                                    :src="Phonesuitimg"></el-image>
                         </div>
                     </div>
                     <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('康师傅方便面一桶', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('康师傅方便面一桶', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('简易手机壳款式1', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('简易手机壳款式2', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box2" >
                 <div>
-                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">酸奶一瓶</span>
+                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">简易手机壳款式2</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Yogurtimg"></el-image>
+                                :src="Phonesuit2img"></el-image>
                     </div>
                 </div>
                 <div>
                     <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('酸奶一瓶', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('酸奶一瓶', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('简易手机壳款式2', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('简易手机壳款式2', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box3" >
                 <div>
-                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">小袋原味花生</span>
+                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">Type-C数据线</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Peanutimg"></el-image>
+                                :src="Datalineimg"></el-image>
                     </div>
                 </div>
                 <div>
                     <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('小袋原味花生', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('小袋原味花生', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('Type-C数据线', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('Type-C数据线', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box4" >
                 <div>
-                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">保湿面膜</span>
+                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">手机挂绳</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Maskimg"></el-image>
+                                :src="Phonestringimg"></el-image>
                     </div>
                 </div>
                 <div>
                     <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('保湿面膜', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('保湿面膜', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('手机挂绳', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('手机挂绳', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box5" >
                 <div>
-                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">香皂一块</span>
+                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">手机保护膜</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Soapimg"></el-image>
+                                :src="Phonemaskimg"></el-image>
                     </div>
                 </div>
                 <div>
                     <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">10积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('香皂一块', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('香皂一块', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('手机保护膜', 10)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('手机保护膜', 10)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
         </el-card>
@@ -117,95 +117,95 @@
         <el-card class="container">
             <div class="box1">
                 <div>
-                    <span style="margin-left: 5px; font-size: 15px;color: #797979;">黑芝麻500g×2包</span>
+                    <span style="margin-left: 5px; font-size: 15px;color: #797979;">手机支架黑款</span>
                     <div class="demo-image">
                         <div class="block" >
                             <el-image
                                     style="width: 130px; height: 130px"
-                                    :src="Sesameimg"></el-image>
+                                    :src="Phoneholderimg"></el-image>
                         </div>
                     </div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">568积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">259积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('黑芝麻500g×2包', 568)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('黑芝麻500g×2包', 568)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('手机支架黑款', 259)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('手机支架黑款', 259)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box2" >
                 <div>
-                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">饼干组合3袋</span>
+                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">手机支架白款</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Biscuitimg"></el-image>
+                                :src="Phoneholder2img"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">416积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">259积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('饼干组合3袋', 416)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('饼干组合3袋', 416)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('手机支架白款', 259)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('手机支架白款', 259)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box3" >
                 <div>
-                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">坚果麦片500g</span>
+                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">移动电源2000mAh</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Oatmealimg"></el-image>
+                                :src="Batteryimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">295积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">395积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('坚果麦片500g', 295)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('坚果麦片500g', 295)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('移动电源2000mAh', 395)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('移动电源2000mAh', 395)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box4" >
                 <div>
-                    <span style="margin-left: 35px; font-size: 15px;color: #797979;">洗护套装</span>
+                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">55度恒温暖杯套装</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Shampooimg"></el-image>
+                                :src="Bottleimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">328积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">828积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('洗护套装', 328)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('洗护套装', 328)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('55度恒温暖杯套装', 828)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('55度恒温暖杯套装', 828)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box5" >
                 <div>
-                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">温泉卸妆水</span>
+                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">蓝牙耳机</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Removerimg"></el-image>
+                                :src="Bluetoothimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">589积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">2589积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('温泉卸妆水', 589)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('温泉卸妆水', 589)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('蓝牙耳机', 2589)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('蓝牙耳机', 2589)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
         </el-card>
@@ -218,95 +218,95 @@
         <el-card class="container">
             <div class="box1">
                 <div>
-                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">福临门软糯香米</span>
+                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">纽曼专业录音笔</span>
                     <div class="demo-image">
                         <div class="block" >
                             <el-image
                                     style="width: 130px; height: 130px"
-                                    :src="Riceimg"></el-image>
+                                    :src="Recorderimg"></el-image>
                         </div>
                     </div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">790积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">1790积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('福临门软糯香米', 790)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('福临门软糯香米', 790)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('纽曼专业录音笔', 1790)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('纽曼专业录音笔', 1790)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box2" >
                 <div>
-                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">鄱阳湖松花蛋</span>
+                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">Dell-5470</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Eggimg"></el-image>
+                                :src="Dellimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">295积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">11295积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('鄱阳湖松花蛋', 295)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('鄱阳湖松花蛋', 295)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('Dell-5470', 11295)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('Dell-5470', 11295)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box3" >
                 <div>
-                    <span style="margin-left: 15px; font-size: 15px;color: #797979;">曼秀雷敦洁面乳</span>
+                    <span style="margin-left: 25px; font-size: 15px;color: #797979;">Iphone10</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Cleanserimg"></el-image>
+                                :src="Iphoneimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">523积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">15523积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('曼秀雷敦洁面乳', 523)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('曼秀雷敦洁面乳', 523)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('Iphone10',15523)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('Iphone10', 15523)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box4" >
                 <div>
-                    <span style="margin-left: 20px; font-size: 15px;color: #797979;">珀莱雅保湿水</span>
+                    <span style="margin-left: 20px; font-size: 15px;color: #797979;">美的电烤箱</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Pwaterimg"></el-image>
+                                :src="Roasterimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 35px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">625积分</el-tag>
+                    <el-tag style="margin-left: 35px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">4625积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('珀莱雅保湿水', 625)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('珀莱雅保湿水', 625)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('美的电烤箱', 4625)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('美的电烤箱', 4625)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
             <div class="box5" >
                 <div>
-                    <span style="margin-left: 20px; font-size: 15px;color: #797979;">小米电动牙刷</span>
+                    <span style="margin-left: 20px; font-size: 15px;color: #797979;">苏泊尔电饭煲</span>
                 </div>
                 <div class="demo-image">
                     <div class="block" >
                         <el-image
                                 style="width: 130px; height: 130px"
-                                :src="Brusherimg"></el-image>
+                                :src="Suporimg"></el-image>
                     </div>
                 </div>
                 <div>
-                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">1400积分</el-tag>
+                    <el-tag style="margin-left: 40px; font-weight:bold;color:#1F2D3D" size="small" type="warning" color="#EFF2F7">3400积分</el-tag>
                 </div>
                 <div>
-                    <el-button @click="show('小米电动牙刷', 1400)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
-                    <el-button @click="buy('小米电动牙刷', 1400)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
+                    <el-button @click="show('苏泊尔电饭煲', 3400)" class="top" style="margin-top: 10px" size="small" type="info" >商品详情</el-button>
+                    <el-button @click="buy('苏泊尔电饭煲', 3400)" class="bottom" style="margin-top: 10px" size="small" type="primary">购买</el-button>
                 </div>
             </div>
         </el-card>
@@ -339,21 +339,21 @@
                 addressId: 0,
                 addresslistId: [],
                 addresslistdetail: [],
-                Noodleimg: require('@/assets/images/noodle.png'),
-                Yogurtimg: require('@/assets/images/yogurt.png'),
-                Peanutimg: require('@/assets/images/peanut.png'),
-                Maskimg: require('@/assets/images/mask.png'),
-                Soapimg: require('@/assets/images/soap.png'),
-                Riceimg: require('@/assets/images/rice.png'),
-                Sesameimg: require('@/assets/images/sesame.png'),
-                Biscuitimg: require('@/assets/images/biscuit.png'),
-                Oatmealimg: require('@/assets/images/oatmeal.png'),
-                Shampooimg: require('@/assets/images/shampoo.png'),
-                Removerimg: require('@/assets/images/remover.png'),
-                Eggimg: require('@/assets/images/egg.png'),
-                Cleanserimg: require('@/assets/images/cleanser.png'),
-                Pwaterimg: require('@/assets/images/proyaWater.png'),
-                Brusherimg: require('@/assets/images/brusher.png')
+                Phonesuitimg: require('@/assets/images/phonesuit.png'),
+                Phonesuit2img: require('@/assets/images/phonesuit2.png'),
+                Datalineimg: require('@/assets/images/dataline.png'),
+                Phonestringimg: require('@/assets/images/phonestring.png'),
+                Phonemaskimg: require('@/assets/images/phonemask.png'),
+                Phoneholderimg: require('@/assets/images/phoneholder.png'),
+                Phoneholder2img: require('@/assets/images/phoneholder2.png'),
+                Batteryimg: require('@/assets/images/battery.png'),
+                Bottleimg: require('@/assets/images/bottle.png'),
+                Bluetoothimg: require('@/assets/images/bluetooth.png'),
+                Recorderimg: require('@/assets/images/recorder.png'),
+                Dellimg: require('@/assets/images/dell.png'),
+                Iphoneimg: require('@/assets/images/iphone.png'),
+                Roasterimg: require('@/assets/images/roaster.png'),
+                Suporimg: require('@/assets/images/supor.png')
             }
         },
         methods: {

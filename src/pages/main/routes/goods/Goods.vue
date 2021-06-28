@@ -64,7 +64,7 @@
               <time class="time">{{ o.time }}上架</time>
               <p>价格: ￥{{ o.price }}</p>
               <p>人气值: {{ o.purchaseTimes }}</p>
-              <el-button type="text" class="button" @click="purchaseDialogVisible = true">购买</el-button>
+              <el-button type="text" class="button" @click="buy(index)">购买</el-button>
               <el-button type="text" class="button2" @click="detailDialogVisible = true;openDetail(index)">详情
               </el-button>
             </div>
@@ -174,29 +174,22 @@
                   <el-button type="primary" @click="detailDialogVisible = false">确 定</el-button>
                  </span>
     </el-dialog>
-    <el-dialog
-        title="提示"
-        :visible.sync="purchaseDialogVisible"
-        width="30%"
-        :before-close="handleClose">
-      <span>确认购买吗？</span>
-      <span slot="footer" class="dialog-footer">
-                <el-button @click="purchaseDialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="purchaseDialogVisible = false">确 定</el-button>
-        <!--      这里插入购买支付逻辑         -->
-                </span>
-    </el-dialog>
+    <direct-buy ref = "directbuy"></direct-buy>
   </div>
 </template>
 
 <script>
 import {goodsPage, addGoodsToTrolley, getTrolleyIdByUserId, getByFKs, updateTrolleyContainGoods, getCommentList} from '../../../../api/goods'
+import DirectBuy from '../../components/Trolley/DirectBuy'
 import {mapGetters} from 'vuex'
 
 export default {
   name: 'GoodsList',
   created () {
     this.getGoods()
+  },
+  components: {
+    DirectBuy
   },
   methods: {
     getGoods () {
@@ -244,6 +237,25 @@ export default {
     openDetail (index) {
       this.goodsDetail = this.goodsList[index]
       this.getComment()
+    },
+    buy (index) {
+      this.goodsDetail = this.goodsList[index]
+      console.info(this.goodsDetail)
+      this.$axios.get('/api/user/getAddr', {params: {
+          id: this.userId
+        }}).then(res => {
+                this.addresslistId = []
+                this.addresslistdetail = []
+                for (var i = 0; i < res.data.data.list.length; i++) {
+                  this.address = res.data.data.list[i].nation + res.data.data.list[i].provice +
+                          res.data.data.list[i].city + res.data.data.list[i].district +
+                          res.data.data.list[i].addr
+                  this.addressId = res.data.data.list[i].id
+                  this.addresslistId.push(this.addressId)
+                  this.addresslistdetail.push(this.address)
+                }
+        this.$refs.directbuy.show(this.goodsDetail, this.addresslistId, this.addresslistdetail)
+        })
     },
     addGoodsToTrolley () {
       if (this.userType === 3) {
@@ -304,6 +316,10 @@ export default {
       url: 'api/file/picture?url=',
       currentDate: new Date(),
       goodsList: [],
+      address: '',
+      addressId: 0,
+      addresslistId: [],
+      addresslistdetail: [],
       userInfo: {
         id: this.userId,
         name: 'null',

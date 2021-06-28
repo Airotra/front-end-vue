@@ -6,3 +6,5 @@ export const _modifyCoupon = (query) => http.PUT('/api/coupon/' + query.couponId
 export const _modifyUserCoupon = (query) => http.POST('/api/userCouponHas/updateUserCoupon', query)
 export const _addrCoupon = (query) => http.POST('/api/coupon', query)
 export const _addrAdminProvideCoupon = (query) => http.POST('/api/adminCouponProvide', query)
+export const _getAllOrderList = (id) => http.GET('/api/orderList/getAllOrderList', {id: id})
+export const _orderConfirm = (query) => http.POST('/api/orderList/orderConfirm', query)

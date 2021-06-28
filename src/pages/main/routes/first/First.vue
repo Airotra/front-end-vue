@@ -4,7 +4,6 @@
       <div class="crumbs">
         <el-breadcrumb separator="/">
           <el-breadcrumb-item :to="{ path: '/main/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/main/first' }">首页</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
     </el-card>

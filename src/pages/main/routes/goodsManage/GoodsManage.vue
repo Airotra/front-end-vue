@@ -503,7 +503,7 @@ export default {
         ],
         description: [
           { required: true, message: '请输入描述', trigger: 'blur' },
-          { min: 5, max: 15, message: '长度在 5 到 50 个字符', trigger: 'blur' }
+          { min: 5, max: 50, message: '长度在 5 到 50 个字符', trigger: 'blur' }
         ]
       }
     }

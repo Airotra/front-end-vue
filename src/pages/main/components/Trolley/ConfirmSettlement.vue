@@ -282,6 +282,15 @@ export default {
                         type: 'warning'
                     })
                 } else {
+                    if (this.orderDetail.paid === false) {
+                        this.info = '您暂未支付，请及时前往订单页面支付'
+                        this.$message({
+                            message: this.info,
+                            type: 'warning',
+                            showClose: true,
+                            duration: 0
+                        })
+                    }
                     if (judge === true) {
                         for (var index = 0; index < this.addresslist.addressDetail.length; index++) {
                             if (this.checkedAddress[0] === this.addresslist.addressDetail[index]) {
@@ -356,13 +365,13 @@ export default {
                                             buynumber: this.GoodsNumber
                                         }
                                     })
-                                    this.info = '订单提交成功,您共支付金额：' + this.LastPrice + '——获得的返还积分点数：' + this.PointGet
-                                    this.$message({
-                                        message: this.info,
-                                        type: 'success'
-                                    })
                                 })
                             }
+                            this.info = '订单提交成功,支付金额：' + this.LastPrice + '——可获得的返还积分点数：' + this.PointGet
+                            this.$message({
+                                message: this.info,
+                                type: 'success'
+                            })
                             // 更新order_contain_goods 表
                             updateOrderGoods(this.goodsDetails)
                         })

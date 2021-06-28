@@ -13,7 +13,7 @@
             :data="tableData"
             style="width: 100%">
         <el-table-column
-                prop="order_id"
+                prop="id"
                 label="订单编号"
                 width="180">
         </el-table-column>
@@ -26,10 +26,10 @@
                 label="支付状态"
                 width="180">
             <template slot-scope="scope">
-                <el-button v-if="scope.row.paid==0"
+                <el-button v-if="scope.row.paid == 0"
                            size="mini"
                            type="danger">未支付</el-button>
-                <el-button v-if="scope.row.paid==1"
+                <el-button v-if="scope.row.paid == 1"
                            size="mini"
                            type="success">已支付</el-button>
             </template>
@@ -38,20 +38,23 @@
                 prop="transport_number"
                 label="发货状态">
             <template slot-scope="scope">
-                <el-button
+                <el-button v-if="scope.row.paid == 1 && scope.row.orderStatus == 0 && scope.row.transportNumber == null"
                         size="mini"
                         type="warning"
-                        @click="handleEdit(scope.$index, scope.row)">点击发货</el-button>
+                        @click="handleEdit(scope.row)">点击发货</el-button>
+                <el-button v-if="scope.row.transportNumber != null"
+                           size="mini"
+                           type="success">已发货</el-button>
             </template>
         </el-table-column>
         <el-table-column
                 label="订单状态"
                 width="180">
             <template slot-scope="scope">
-                <el-button v-if="scope.row.order_status==0"
+                <el-button v-if="scope.row.orderStatus==0"
                            size="mini"
                            type="danger">未完成</el-button>
-                <el-button v-if="scope.row.order_status==1"
+                <el-button v-if="scope.row.orderStatus==1"
                            size="mini"
                            type="success">已完成</el-button>
             </template>
@@ -61,31 +64,28 @@
 </template>
 
 <script>
+    import {_getAllOrderList, _orderConfirm} from '../../../api/admin'
+
     export default {
         name: 'AdminOrderManage',
+        created () {
+            _getAllOrderList().then(res => {
+                // console.info(res)
+                this.tableData = res.data
+            })
+        },
         data () {
             return {
-                tableData: [{
-                    order_id: '1111',
-                    order_date: '2016-05-02',
-                    paid: '0',
-                    transport_number: '',
-                    order_status: '0'
-                },
-                    {
-                        order_id: '2222',
-                        order_date: '2016-05-02',
-                        paid: '1',
-                        transport_number: '',
-                        order_status: '0'
-                    },
-                    {
-                        order_id: '3333',
-                        order_date: '2016-05-02',
-                        paid: '1',
-                        transport_number: '',
-                        order_status: '1'
-                    }]
+                tableData: []
+            }
+        },
+        methods: {
+            handleEdit (obj) {
+                // console.info(obj)
+                _orderConfirm(obj).then(res => {
+                    console.info(res)
+                })
+                this.$router.go(0)
             }
         }
     }

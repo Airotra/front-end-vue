@@ -19,9 +19,8 @@ export default {
     return {
       logo: {
         src: logo,
-        alt: '上程数据',
-        firstDes: '综合网上购物商城',
-        secondDes: '广泛UE模板'
+        alt: '综合网上购物商城',
+        firstDes: '综合网上购物商城'
       }
     }
   },

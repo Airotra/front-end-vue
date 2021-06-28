@@ -112,6 +112,14 @@ export default {
             path: '/main/admin/CouponManage',
             icon: 'suncaper-menu-unfold',
             title: '优惠券管理'
+          },
+          {
+            groupTitle: '订单管理'
+          },
+          {
+            path: '/main/admin/adminOrderManage',
+            icon: 'suncaper-menu-unfold',
+            title: '订单管理'
           }
         ]
     },

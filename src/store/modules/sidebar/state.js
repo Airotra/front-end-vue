@@ -98,6 +98,9 @@ export default {
             title: '商品管理'
           },
           {
+            groupTitle: '评论'
+          },
+          {
             path: '/main/commentManage/commentManage',
             icon: 'suncaper-menu-unfold',
             title: '评论管理'

@@ -1,10 +1,12 @@
 <template>
     <el-dialog
+            append-to-body
             title="提示"
             :visible.sync="dialogVisible"
             width="30%"
             center
-            :before-close="handleClose">
+            :before-close="handleClose"
+            :modal-append-to-body="false">
         <el-form ref="form" label-width="80px">
             <el-rate
                     v-model="rateValue"

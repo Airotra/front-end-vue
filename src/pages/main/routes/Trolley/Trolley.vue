@@ -124,6 +124,7 @@ export default {
   methods: {
     // 点击获取购物车中商品信息
     handleClick (obj) {
+      console.info(obj)
       this.$refs.goodsDetail.show(obj)
     },
     // 点击移除购物车中商品

@@ -82,7 +82,7 @@
         :before-close="handleClose">
       <el-row :gutter="20">
         <el-col :span="12">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image3">
+          <el-image :src=" goodsDetail.picture?url + goodsDetail.picture:defaultImg" class="image3"></el-image>
         </el-col>
         <el-col :span="12">
           <p>商品名: {{goodsDetail.name}}</p>
@@ -293,6 +293,8 @@ export default {
       this.goodsDetail = row
     },
     handleDetail (index, row) {
+      console.info(index)
+      console.info(row)
       this.detailDialogVisible = true
       this.goodsDetail = row
       // console.log(this.goodsDetail)

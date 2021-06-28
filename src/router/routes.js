@@ -161,7 +161,15 @@ const mainPage = [
             import(
                 /* webpackChunkName: "First" */ '../pages/main/admin/adminOrderManage'
                 )
-      }
+      },
+      {
+        path: 'commentManage/commentManage',
+        name: 'commentManage',
+        component: () =>
+            import(
+                /* webpackChunkName: "Goods" */ '../pages/main/routes/commentManage/CommentManage'
+                )
+      },
     ]
   }
 ]

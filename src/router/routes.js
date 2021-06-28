@@ -169,7 +169,7 @@ const mainPage = [
             import(
                 /* webpackChunkName: "Goods" */ '../pages/main/routes/commentManage/CommentManage'
                 )
-      },
+      }
     ]
   }
 ]

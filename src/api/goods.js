@@ -10,5 +10,6 @@ export const getTrolleyIdByUserId = (id) => http.GET('/api/user/getTrolleyIdByUs
 export const getByFKs = (purchaseDetail) => http.POST('/api/trolleyContainGoods/getByFKs', purchaseDetail)
 // 更新商品在购物车中的信息
 export const updateTrolleyContainGoods = (purchaseDetail) => http.POST('/api/trolleyContainGoods/updateTrolleyContainGoodsNumber', purchaseDetail)
+export const getGoods = (goodsid) => http.GET('/api/goods/getGoods', {goodsid: goodsid})
 // 获取评论
 export const getCommentList = (commentListDTO) => http.POST('/api/goodsComment/listByPage', commentListDTO)

@@ -367,7 +367,7 @@ export default {
                                     })
                                 })
                             }
-                            this.info = '订单提交成功,支付金额：' + this.LastPrice + '——可获得的返还积分点数：' + this.PointGet
+                            this.info = '订单提交成功,本单可获得的返还积分点数：' + this.PointGet
                             this.$message({
                                 message: this.info,
                                 type: 'success'

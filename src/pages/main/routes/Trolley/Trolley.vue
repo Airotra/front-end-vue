@@ -170,6 +170,7 @@ export default {
     getTrolley () {
         getTrolleyIdByUserId(this.userId).then(res => {
         // 获取购物车id，作为参数传入
+        console.info(res)
         this.query.id = res.data
         trolleylist(this.query).then(res => {
           this.TrolleyGoods = res.data.records

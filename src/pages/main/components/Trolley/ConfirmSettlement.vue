@@ -98,7 +98,7 @@
 <script>
 import {mapGetters} from 'vuex'
 import {updateOrderGoods, updateOrder} from '@api/order'
-import {getGoods} from '@api/goods'
+import {getGoods, getTrolleyIdByUserId} from '@api/goods'
 import {_userCouponInfo} from '@api/user'
 import {removegoods} from '@api/removegoods'
 
@@ -282,15 +282,6 @@ export default {
                         type: 'warning'
                     })
                 } else {
-                    if (this.orderDetail.paid === false) {
-                        this.info = '您暂未支付，请及时前往订单页面支付'
-                        this.$message({
-                            message: this.info,
-                            type: 'warning',
-                            showClose: true,
-                            duration: 0
-                        })
-                    }
                     if (judge === true) {
                         for (var index = 0; index < this.addresslist.addressDetail.length; index++) {
                             if (this.checkedAddress[0] === this.addresslist.addressDetail[index]) {
@@ -305,15 +296,18 @@ export default {
                         }
                         if (this.checkedPaid[0] === '暂不支付') {
                             this.orderDetail.paid = false
+                            this.info = '您暂未支付，请及时前往订单页面支付'
+                            this.$message({
+                                message: this.info,
+                                type: 'warning',
+                                showClose: true,
+                                duration: 0
+                            })
                         } else {
                             this.orderDetail.paid = true
                         }
                         // 购物车操作，删除购买的物品
-                        this.$axios.get('/api/user/getTrolleyID', {
-                            params: {
-                                id: this.userId
-                            }
-                        }).then(res => {
+                        getTrolleyIdByUserId(this.userId).then(res => {
                             // 获取购物车id，作为参数传入
                             this.query.id = res.data
                             // 购买后删除购物车中的记录

@@ -208,15 +208,6 @@ export default {
                       type: 'warning'
                   })
               } else {
-                  if (this.orderDetail.paid === false) {
-                      this.info = '您暂未支付，请及时前往订单页面支付'
-                      this.$message({
-                          message: this.info,
-                          type: 'warning',
-                          showClose: true,
-                          duration: 0
-                      })
-                  }
                   for (var index = 0; index < this.addresslist.addressDetail.length; index++) {
                       if (this.checkedAddress[0] === this.addresslist.addressDetail[index]) {
                           this.orderDetail.adressId = this.addresslist.addressId[index]
@@ -224,7 +215,16 @@ export default {
                       }
                   }
                   if (this.checkedGet[0] === '是') { this.orderDetail.getBySelf = true } else { this.orderDetail.getBySelf = false }
-                  if (this.checkedPaid[0] === '暂不支付') { this.orderDetail.paid = false } else { this.orderDetail.paid = true }
+                  if (this.checkedPaid[0] === '暂不支付') {
+                      this.orderDetail.paid = false
+                      this.info = '您暂未支付，请及时前往订单页面支付'
+                      this.$message({
+                          message: this.info,
+                          type: 'warning',
+                          showClose: true,
+                          duration: 0
+                      })
+                   } else { this.orderDetail.paid = true }
                   // 如果使用了优惠券则移除优惠券
                   for (var cdex = 0; cdex < this.CouponList.length; cdex++) {
                       if (this.value === this.CouponList[cdex].couponId) {

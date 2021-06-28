@@ -81,6 +81,7 @@
 import {mapGetters} from 'vuex'
 import {trolleylist} from '@api/trolleylist'
 import {removegoods} from '@api/removegoods'
+import {getTrolleyIdByUserId} from '@api/goods'
 import {goodsnumberChange} from '@api/goodsnumberChange'
 import GoodsDetail from '../../components/Trolley/TrolleyGoodsDetail'
 import GoodsRemove from '../../components/Trolley/TrolleyGoodsRemove'
@@ -167,10 +168,7 @@ export default {
     },
     // 获取购物车中信息
     getTrolley () {
-      this.$axios.get('/api/user/getTrolleyID', {params: {
-        // 获取用户id，作为参数传入
-        id: this.userId
-      }}).then(res => {
+        getTrolleyIdByUserId(this.userId).then(res => {
         // 获取购物车id，作为参数传入
         this.query.id = res.data
         trolleylist(this.query).then(res => {

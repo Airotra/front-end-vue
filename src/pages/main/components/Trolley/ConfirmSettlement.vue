@@ -228,6 +228,7 @@ export default {
         },
         checkStore () {
             for (var i = 0; i < this.GoodsSelection.length; i++) {
+                this.GoodsNumber = this.GoodsSelection[i].goodsNumber
                 getGoods(this.GoodsSelection[i].goodsId).then(res => {
                     if ((res.data.store - this.GoodsNumber) < 0) {
                         this.info = '编号为：' + res.data.goodsId + '的商品库存不足，购买失败'

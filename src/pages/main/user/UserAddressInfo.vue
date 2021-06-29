@@ -177,7 +177,7 @@
                             callback: action => {
                                 this.$message({
                                     type: 'error',
-                                    message: `删除失败`
+                                    message: `有订单使用该地址，地址删除失败`
                                 })
                                 this.getAddr()
                             }

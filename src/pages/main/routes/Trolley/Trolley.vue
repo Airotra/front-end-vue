@@ -257,7 +257,7 @@ export default {
           })
           .catch(_ => {
           })
-    },
+    }
   }
 }
 </script>

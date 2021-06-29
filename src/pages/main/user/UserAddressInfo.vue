@@ -160,16 +160,29 @@
             },
             delete (obj) {
                 _addrDelete(obj.id).then(res => {
-                    this.$alert('删除成功', '提示', {
-                        confirmButtonText: '确定',
-                        callback: action => {
-                            this.$message({
-                                type: 'success',
-                                message: `删除成功`
-                            })
-                            this.getAddr()
-                        }
-                    })
+                    if (res.status) {
+                        this.$alert('删除成功', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'success',
+                                    message: `删除成功`
+                                })
+                                this.getAddr()
+                            }
+                        })
+                    } else {
+                        this.$alert('删除失败', '提示', {
+                            confirmButtonText: '确定',
+                            callback: action => {
+                                this.$message({
+                                    type: 'error',
+                                    message: `删除失败`
+                                })
+                                this.getAddr()
+                            }
+                        })
+                    }
                 })
             },
             addAddr () {

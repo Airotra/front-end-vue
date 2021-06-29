@@ -66,7 +66,7 @@
                         <p style="margin-left: 5%">详细地址：{{address.addr}}</p>
                     </div>
                     <div style="border-bottom: 1px solid rgb(240,240,240)">
-                        <p style="margin-left: 5%">地址编号：0</p>
+                        <p style="margin-left: 5%">地址编号：{{address.id}}</p>
                     </div>
                     <el-button type="text" size="medium" style="float: right; margin-right: 5%; margin-top: 5px" @click="handleClick2">编辑</el-button>
                 </div>
@@ -262,6 +262,6 @@
         width: 150px;
         height: 150px;
         display: block;
-        margin-left: 130%;
+        margin-left: 150%;
     }
 </style>

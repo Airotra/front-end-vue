@@ -74,6 +74,33 @@
     <goods-detail ref="goodsDetail"></goods-detail>
     <goods-remove ref="goodsRemove"></goods-remove>
     <confirm-settlement ref="confirmSettle" @ok="refresh"></confirm-settlement>
+    <el-dialog
+        title="商品详情"
+        :visible.sync="detailDialogVisible"
+        width="50%"
+        :before-close="handleClose">
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-image :src="goodsInfo.picture?url + goodsInfo.picture:defaultImg" class="image2"></el-image>
+        </el-col>
+        <el-col :span="12">
+          <span>商品名: {{ goodsInfo.name }}</span>
+          <el-divider></el-divider>
+          <span>价格: ￥{{ goodsInfo.price }}</span>
+          <el-divider></el-divider>
+          <span>人气值: {{ goodsInfo.purchaseTimes }}</span>
+          <el-divider></el-divider>
+          <span>描述: {{ goodsInfo.description }}</span>
+          <el-divider></el-divider>
+          <span v-if="goodsInfo.sideDec1 !== null&&goodsInfo.sideDec1">额外描述1: {{ goodsInfo.sideDec1 }} <el-divider></el-divider></span>
+          <span v-if="goodsInfo.sideDec2 !== null&&goodsInfo.sideDec2">额外描述2: {{ goodsInfo.sideDec2 }} <el-divider></el-divider></span>
+          <span v-if="goodsInfo.sideDec3 !== null&&goodsInfo.sideDec3">额外描述3: {{ goodsInfo.sideDec3 }} <el-divider></el-divider></span>
+        </el-col>
+      </el-row>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="detailDialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -86,6 +113,7 @@ import {goodsnumberChange} from '@api/goodsnumberChange'
 import GoodsDetail from '../../components/Trolley/TrolleyGoodsDetail'
 import GoodsRemove from '../../components/Trolley/TrolleyGoodsRemove'
 import ConfirmSettlement from '../../components/Trolley/ConfirmSettlement'
+import {getGoods} from '../../../../api/trolleylist'
 
 export default {
   name: 'Second',
@@ -103,11 +131,21 @@ export default {
   },
   data () {
     return {
+      defaultImg: 'https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png',
+      url: 'api/file/picture?url=',
+      detailDialogVisible: false,
       TrolleyGoods: [],
       GoodsSelection: [],
       address: '',
       addressId: 0,
       addresslistId: [],
+      goodsInfo: {
+        // 商品拥有的属性
+        name: 'null',
+        price: 'null',
+        purchaseTimes: '0',
+        description: 'null'
+      },
       addresslistdetail: [],
       query: {
         pageNo: 1,
@@ -128,7 +166,11 @@ export default {
     },
     // 点击获取购物车中商品信息
     handleClick (obj) {
-      this.$refs.goodsDetail.show(obj)
+      // console.info(obj)
+      this.detailDialogVisible = true
+      getGoods(obj.goodsId).then(res => {
+        this.goodsInfo = res.data
+      })
     },
     // 点击移除购物车中商品
     handleRemove (obj) {
@@ -207,7 +249,27 @@ export default {
     handleCurrentChange (val) {
       this.query.pageNo = val
       this.getTrolley()
-    }
+    },
+    handleClose (done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done()
+          })
+          .catch(_ => {
+          })
+    },
   }
 }
 </script>
+
+<style>
+.image {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+.image2{
+  width: 100%;
+  display: block;
+}
+</style>
